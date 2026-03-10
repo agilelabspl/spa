@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA: System Przewidywalności Agile z AI | Paweł Lewiński</title>
+    <meta name="description" content="4-tygodniowy program live. Połącz metryki z AI i zbuduj system przewidywalności swojego zespołu. Kurs Metryk + asystent AI + dashboard + Jira/Rovo + sesje live.">
+    <link rel="canonical" href="https://kursmetryk.pl/">
+    <meta property="og:title" content="SPA: System Przewidywalności Agile z AI">
+    <meta property="og:description" content="4-tygodniowy program live. Metryki + AI + dashboard + praktyka = przewidywalność.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kursmetryk.pl/">
+    <meta property="og:image" content="https://kursmetryk.pl/img/SPAcert.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SPA: System Przewidywalności Agile z AI">
+    <meta name="twitter:description" content="4-tygodniowy program live. Metryki + AI + dashboard + praktyka = przewidywalność.">
+    <meta name="twitter:image" content="https://kursmetryk.pl/img/SPAcert.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FE93E33068"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FE93E33068');
+    </script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #ffffff;
+            --bg-alt: #f7f7f7;
+            --bg-dark: #111111;
+            --text: #111111;
+            --text-light: #555555;
+            --text-on-dark: #ffffff;
+            --accent: #111111;
+            --accent-hover: #333333;
+            --cta: #111111;
+            --cta-hover: #333333;
+            --border: #e0e0e0;
+            --highlight: #f0ebe4;
+            --radius: 8px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 4px 24px rgba(0,0,0,0.10);
+            --max-w: 1120px;
+            --countdown-height: 0px;
+            --section-py: clamp(3.5rem, 8vw, 6rem);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+        .container--narrow { max-width: 780px; margin: 0 auto; padding: 0 1.5rem; }
+
+        h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; }
+        h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.02em; }
+        h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: -0.01em; }
+        h3 { font-size: clamp(1.1rem, 2.5vw, 1.35rem); }
+        p { max-width: 680px; }
+
+        a { color: inherit; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--cta);
+            color: var(--text-on-dark);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn:hover { background: var(--cta-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .btn--dark {
+            background: var(--accent);
+            color: var(--text-on-dark);
+        }
+        .btn--dark:hover { background: var(--accent-hover); }
+        .btn--outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+        .btn--outline:hover { border-color: var(--accent); background: transparent; }
+        .btn--large { padding: 1.1rem 2.5rem; font-size: 1.05rem; }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        .eyebrow--badge {
+            background: var(--bg-dark);
+            color: var(--text-on-dark);
+            padding: 0.35rem 0.85rem;
+            border-radius: var(--radius);
+        }
+
+        /* ===== COUNTDOWN ===== */
+        .countdown-bar {
+            background: var(--bg-dark);
+            color: var(--text-on-dark);
+            text-align: center;
+            padding: 0.65rem 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+        .countdown-bar strong {
+            color: #e8c547;
+            font-weight: 800;
+        }
+        .countdown-bar a { color: #e8c547; }
+
+        /* ===== NAV ===== */
+        .nav {
+            position: sticky;
+            top: var(--countdown-height);
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+        }
+        .nav__logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav__logo img {
+            display: block;
+            height: 42px;
+            width: auto;
+        }
+        .nav__links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+        .nav__links a {
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: color 0.2s;
+        }
+        .nav__links a:hover { color: var(--text); }
+        .nav__cta {
+            font-size: 0.95rem !important;
+            padding: 0.65rem 1.5rem !important;
+            color: var(--text-on-dark) !important;
+            background: var(--cta) !important;
+            border-radius: 6px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+        .nav__cta:hover { background: var(--cta-hover) !important; box-shadow: 0 4px 16px rgba(0,0,0,0.18); transform: translateY(-1px); }
+        @media (max-width: 768px) {
+            .nav__links--desktop { display: none; }
+        }
+
+        /* ===== HAMBURGER ===== */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 300;
+        }
+        .hamburger svg { display: block; }
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(16px);
+            z-index: 250;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .mobile-menu__close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text);
+            padding: 0.5rem;
+        }
+
+        /* ===== HERO ===== */
+        @keyframes wordReveal {
+            from { transform: translateY(110%); }
+            to { transform: translateY(0); }
+        }
+        .word-wrap {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+            padding-bottom: 0.08em;
+        }
+        .word-wrap .word {
+            display: inline-block;
+            transform: translateY(110%);
+            animation: wordReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .word-wrap:nth-child(1) .word { animation-delay: 0.15s; }
+        .word-wrap:nth-child(2) .word { animation-delay: 0.25s; }
+        .word-wrap:nth-child(3) .word { animation-delay: 0.35s; }
+        .word-wrap:nth-child(4) .word { animation-delay: 0.45s; }
+        .word-wrap:nth-child(5) .word { animation-delay: 0.5s; }
+        .word-wrap:nth-child(6) .word { animation-delay: 0.55s; }
+        .word-wrap:nth-child(7) .word { animation-delay: 0.6s; }
+        .word-wrap:nth-child(8) .word { animation-delay: 0.65s; }
+        .word-wrap:nth-child(9) .word { animation-delay: 0.7s; }
+        .word-wrap:nth-child(10) .word { animation-delay: 0.75s; }
+        .hero {
+            padding: clamp(3rem, 8vw, 5rem) 0 var(--section-py);
+            text-align: center;
+        }
+        .hero h1 { margin-bottom: 0.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .hero__headline2 {
+            font-size: clamp(1.15rem, 3vw, 1.5rem);
+            font-weight: 500;
+            color: var(--text);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        .hero__sub {
+            font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+            color: var(--text-light);
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            line-height: 1.65;
+        }
+        .hero__cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .hero__seats {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #b91c1c;
+            margin-bottom: 1rem;
+        }
+        .hero__seats svg { flex-shrink: 0; }
+        .hero__guarantee {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 0.75rem;
+            display: block;
+            max-width: 100%;
+        }
+        .hero__proof {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            text-align: center;
+            display: block;
+            max-width: 100%;
+        }
+        .hero__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+        .hero__tag {
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.4rem 0.9rem;
+            background: var(--bg-alt);
+            border-radius: 100px;
+            color: var(--text-light);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section { padding: var(--section-py) 0; }
+        .section--alt { background: var(--bg-alt); }
+        .section--dark { background: var(--bg-dark); color: var(--text-on-dark); }
+        .section--dark .text-light { color: #aaa; }
+        .section__header { text-align: center; margin-bottom: 3rem; }
+        .section__header p { margin: 0.75rem auto 0; color: var(--text-light); }
+
+        /* ===== PROBLEM ===== */
+        .pain-list { list-style: none; max-width: 680px; margin: 0 auto; }
+        .pain-list li {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.05rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .pain-list li:last-child { border-bottom: none; }
+        .pain-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fee2e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            margin-top: 2px;
+        }
+        .pain-list .closing {
+            font-weight: 500;
+            color: var(--text-light);
+            font-style: italic;
+            padding: 1.5rem 0 0;
+            border: none;
+            display: block;
+        }
+
+        /* ===== BEFORE/AFTER ===== */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
+        .compare-col {
+            padding: 2rem;
+            border-radius: var(--radius);
+        }
+        .compare-col--before {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+        .compare-col--after {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+        .compare-col h3 {
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .compare-col ul { list-style: none; }
+        .compare-col ul li {
+            padding: 0.5rem 0;
+            font-size: 1.05rem;
+            display: flex;
+            gap: 0.65rem;
+            align-items: flex-start;
+        }
+        .compare-col ul li svg { flex-shrink: 0; margin-top: 3px; }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .stat { padding: 1.5rem; }
+        .stat__number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        .section--dark .stat__number { color: #fff; }
+        .stat__label {
+            font-size: 1.05rem;
+            margin-top: 0.5rem;
+        }
+        .section--dark .stat__label { color: #aaa; }
+
+        /* ===== WORLD CHANGED ===== */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        @media (max-width: 900px) { .insight-grid { grid-template-columns: 1fr !important; } }
+        .insight-card {
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .insight-card--danger {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+        }
+        .insight-card--warn {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+        }
+        .insight-card--success {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+        }
+        .insight-card h3 { margin-bottom: 0.75rem; }
+        .insight-card p { color: var(--text-light); font-size: 1.05rem; }
+
+        .quote-block {
+            max-width: 700px;
+            margin: 3rem auto 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.5;
+            padding: 2rem;
+            border-left: 4px solid var(--cta);
+            background: var(--bg-alt);
+            color: var(--text);
+        }
+
+        /* ===== SOLUTION OVERVIEW ===== */
+        .solution-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+        .pillar {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius);
+            background: var(--bg);
+            border: 1px solid var(--border);
+        }
+        .pillar__icon {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pillar h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .pillar p { font-size: 1.05rem; color: var(--text-light); margin: 0 auto; }
+
+        /* ===== FOR WHOM ===== */
+        .for-whom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) { .for-whom-grid { grid-template-columns: 1fr; } }
+        .for-whom-col {
+            padding: 2rem;
+            border-radius: var(--radius);
+        }
+        .for-whom-col--yes {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+        .for-whom-col--no {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+        }
+        .for-whom-col h3 { margin-bottom: 1rem; }
+        .for-whom-col ul { list-style: none; }
+        .for-whom-col ul li {
+            padding: 0.45rem 0;
+            font-size: 1.05rem;
+            display: flex;
+            gap: 0.65rem;
+            align-items: flex-start;
+        }
+        .for-whom-col ul li svg { flex-shrink: 0; margin-top: 3px; }
+
+        /* ===== PROGRAM / SPRINTS ===== */
+        .sprint-timeline { max-width: 780px; margin: 0 auto; }
+        .sprint {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1.5rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .sprint:last-child { border-bottom: none; }
+        .sprint__badge {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            color: var(--text-on-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+        .sprint__badge--bonus {
+            background: #f6efe4;
+            border: 2px solid #c8a97e;
+            color: #6b4f2f;
+        }
+        .sprint h3 { margin-bottom: 0.5rem; }
+        .sprint p { color: var(--text-light); font-size: 1.05rem; max-width: 600px; }
+        .sprint__outcome {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            background: #ecfdf5;
+            padding: 0.3rem 0.75rem;
+            border-radius: 100px;
+        }
+
+        /* ===== MODULES GRID ===== */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px) { .modules-grid { grid-template-columns: 1fr; } }
+        .module-card {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg);
+        }
+        .module-card--bonus {
+            background: #fbf6ef;
+            border-color: #c8a97e;
+        }
+        .module-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            color: var(--text-on-dark);
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .module-card--bonus .module-num {
+            background: #f6efe4;
+            border: 2px solid #c8a97e;
+            color: #6b4f2f;
+        }
+        .module-card__text h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
+        }
+        .module-card__text p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            max-width: 100%;
+            margin: 0;
+        }
+
+        /* ===== AI MODULES ===== */
+        .ai-modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .ai-module-card {
+            padding: 1.75rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .ai-module-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+        }
+        .ai-module-card h3 svg { flex-shrink: 0; margin-top: 2px; }
+        .ai-module-card p { font-size: 1rem; color: var(--text-light); }
+        @media (max-width: 900px) { .ai-images-grid { grid-template-columns: 1fr !important; } }
+
+        /* ===== VALUE STACK ===== */
+        .value-list { list-style: none; max-width: 680px; margin: 0 auto; }
+        .value-list li {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .value-list li:last-child { border-bottom: none; }
+        .check-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ecfdf5;
+            color: #059669;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+        .value-list strong { font-weight: 600; }
+        .value-note { color: var(--text-light); font-size: 1.05rem; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .testimonial {
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .testimonial__text {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
+            line-height: 1.65;
+        }
+        .testimonial__author { display: flex; align-items: center; gap: 0.75rem; }
+        .testimonial__avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+        .testimonial__name { font-weight: 600; font-size: 1rem; }
+        .testimonial__role { font-size: 1rem; color: var(--text-light); }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            align-items: start;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px) {
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+        .about__photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin: 0 auto;
+        }
+        .about__text h2 { margin-bottom: 1.5rem; }
+        .about__text p { color: var(--text-light); margin-bottom: 1rem; font-size: 1.05rem; }
+        /* ===== ROI GRID ===== */
+        @media (max-width: 768px) {
+            .roi-grid { grid-template-columns: 1fr !important; }
+        }
+
+        /* ===== PRICING ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+        }
+        .price-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            position: relative;
+            background: var(--bg);
+        }
+        .price-card--featured {
+            border: 2px solid var(--cta);
+            box-shadow: var(--shadow-lg);
+        }
+        .price-card__badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--cta);
+            color: var(--text-on-dark);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.3rem 0.9rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+        .price-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .price-card__desc { font-size: 1.05rem; color: var(--text-light); margin-bottom: 1.25rem; }
+        .price-card__old-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+        .price-card__price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        .price-card__unit {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-left: 0.25rem;
+        }
+        .price-card__features {
+            list-style: none;
+            margin: 1.5rem 0;
+            font-size: 1.05rem;
+        }
+        .price-card__features li {
+            padding: 0.4rem 0;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+        .price-card__features .feat-check { color: #059669; font-weight: 700; flex-shrink: 0; }
+        .price-card .btn { width: 100%; justify-content: center; margin-top: 0.5rem; }
+        .urgency-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .urgency-note strong { color: var(--text); }
+
+        /* ===== B2B SECTION ===== */
+        .b2b-section {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .b2b-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 700px;
+        }
+        .b2b-item {
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .b2b-item svg { margin-bottom: 0.5rem; }
+        .b2b-item__title { font-weight: 600; font-size: 1rem; }
+        .b2b-item__desc { font-size: 1rem; color: var(--text-light); margin-top: 0.25rem; }
+
+        /* ===== GUARANTEE ===== */
+        .guarantee-box {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+        }
+        .guarantee-box__icon { margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; }
+        .guarantee-box h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .guarantee-box p { margin: 0 auto; color: var(--text-light); }
+
+        /* ===== FAQ ===== */
+        .faq-list { max-width: 720px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            background: none;
+            border: none;
+            font-family: inherit;
+            color: var(--text);
+            text-align: left;
+            width: 100%;
+            gap: 1rem;
+        }
+        .faq-q:hover { color: var(--text-light); }
+        .faq-q__icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            font-size: 1.2rem;
+        }
+        .faq-item.open .faq-q__icon { transform: rotate(45deg); }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .faq-item.open .faq-a {
+            max-height: var(--faq-max-height, 0px);
+        }
+        .faq-a__inner {
+            padding: 0 0 1.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            text-align: center;
+            padding: clamp(4rem, 10vw, 6rem) 0;
+            background: var(--bg-dark);
+            color: var(--text-on-dark);
+        }
+        .final-cta h2 { margin-bottom: 1rem; }
+        .final-cta p { color: #aaa; margin: 0 auto 2rem; }
+        .final-cta .btn {
+            background: var(--cta);
+            color: var(--text-on-dark);
+        }
+        .final-cta .btn:hover {
+            background: var(--cta-hover);
+        }
+        .final-cta__seats {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #e8c547;
+            margin-bottom: 1.5rem;
+        }
+        .ps-section {
+            max-width: 620px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            text-align: left;
+            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.7;
+        }
+        .ps-section strong { color: #fff; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+        }
+        .footer a { color: var(--text-light); }
+
+        /* ===== UTILS ===== */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "SPA: System Przewidywalności Agile z AI",
+        "description": "4-tygodniowy program live łączący metryki Agile z AI. Kurs Metryk (120+ lekcji) + asystent AI + dashboard + Jira/Rovo + sesje live.",
+        "provider": {
+            "@type": "Organization",
+            "name": "AgileLabs",
+            "url": "https://agilelabs.pl"
+        },
+        "instructor": {
+            "@type": "Person",
+            "name": "Paweł Lewiński"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Kurs Metryk",
+                "price": "1499",
+                "priceCurrency": "PLN",
+                "availability": "https://schema.org/PreOrder"
+            },
+            {
+                "@type": "Offer",
+                "name": "SPA",
+                "price": "1999",
+                "priceCurrency": "PLN",
+                "availability": "https://schema.org/PreOrder"
+            },
+            {
+                "@type": "Offer",
+                "name": "SPA + Mentoring",
+                "price": "2999",
+                "priceCurrency": "PLN",
+                "availability": "https://schema.org/PreOrder"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Czy to nie będzie kolejne szkolenie, po którym nic się nie zmienia?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "SPA to program, nie kurs do obejrzenia i zapomnienia. Budujesz system krok po kroku, z własnymi danymi zespołu, przez 4 tygodnie. Po każdym sprincie masz coś działającego."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Nie znam się na AI. Czy dam radę?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "SPA jest zaprojektowane dla praktyków, nie programistów. Nie piszesz kodu. Konfigurujesz, promptujesz, karmisz danymi. Jeśli umiesz eksportować CSV z Jiry, masz wystarczające umiejętności techniczne."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Ile czasu tygodniowo muszę poświęcić?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Jedna sesja live w tygodniu + ok. 2-3 godziny pracy własnej. Kurs Metryk realizujesz we własnym tempie."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Czy mogę zapłacić z budżetu firmy?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Tak. Wystawiam fakturę VAT. Wiele osób finansuje z budżetu szkoleniowego. Faktura pro-forma dostępna na życzenie."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Czy muszę mieć płatne modele AI?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Nie musisz mieć ich na starcie, ale będę rekomendował przejście na płatny plan jednego z modeli, najczęściej Claude lub ChatGPT. Powód jest prosty: w pracy z danymi, większym kontekstem i dłuższymi analizami darmowe plany szybko wpadają w limity i utrudniają normalną pracę. Ostatecznie to Ty decydujesz, z którego narzędzia chcesz korzystać."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Czym SPA różni się od samego Kursu Metryk?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Kurs Metryk to fundament: 120+ lekcji wideo o metrykach procesowych. SPA dodaje do tego asystenta AI, dashboardy, integrację z Jira/Rovo, 4 sesje live i 2 bonusowe, bibliotekę dobrych promptów oraz dostęp do społeczności Agile+AI. Kurs Metryk to wiedza, SPA to wdrożony system."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Korzystam z Azure DevOps, nie z Jiry. Czy SPA jest dla mnie?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Tak. Zasady metryk i pracy z AI działają niezależnie od narzędzia. Główne przykłady używają Jiry, ale pokazuję też podejście z eksportem CSV, które działa z każdym systemem."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+
+<body id="top">
+
+<!-- ===== INFO BAR ===== -->
+<div class="countdown-bar">
+    Przedsprzedaż otwarta. <strong>Dołącz do 18.03.2026</strong>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+    <div class="container nav__inner">
+        <a href="#top" class="nav__logo" aria-label="Przejdź na górę strony"><img src="img/logo.png" alt="SPA"></a>
+        <ul class="nav__links nav__links--desktop">
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#program">Program</a></li>
+            <li><a href="#opinie">Opinie</a></li>
+            <li><a href="#cennik">Cennik</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn nav__cta">Dołącz</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger-btn" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true" tabindex="-1">
+    <button class="mobile-menu__close" id="mobile-menu-close" aria-label="Zamknij menu">&times;</button>
+    <a href="#problem" onclick="closeMobileMenu()">Problem</a>
+    <a href="#program" onclick="closeMobileMenu()">Program</a>
+    <a href="#opinie" onclick="closeMobileMenu()">Opinie</a>
+    <a href="#cennik" onclick="closeMobileMenu()">Cennik</a>
+    <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+    <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn" onclick="closeMobileMenu()">Dołącz do przedsprzedaży</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="container">
+        <span class="eyebrow eyebrow--badge">4 tygodnie live · metryki + AI</span>
+        <h1><span class="word-wrap"><span class="word">Biznes</span></span> <span class="word-wrap"><span class="word">pyta</span></span> <span class="word-wrap"><span class="word">„na</span></span> <span class="word-wrap"><span class="word">kiedy?"</span></span><br><span class="word-wrap"><span class="word">Twój</span></span> <span class="word-wrap"><span class="word">zespół</span></span> <span class="word-wrap"><span class="word">zna</span></span>&nbsp;<span class="word-wrap"><span class="word">odpowiedź!</span></span></h1>
+        <p class="hero__headline2">SPA: System Przewidywalności Agile z&nbsp;AI.<br>Budujesz system metrykowy z&nbsp;<strong>asystentem AI</strong> w&nbsp;4&nbsp;tygodnie.</p>
+        <p class="hero__sub">
+            Zamiast zgadywać, pokazujesz dane, ryzyka i realny termin dowiezienia.
+        </p>
+        <div class="hero__cta-group">
+            <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn btn--large">Dołącz do przedsprzedaży <span aria-hidden="true">&rarr;</span></a>
+            <a href="#program" class="btn btn--outline btn--large">Zobacz program</a>
+        </div>
+        <p class="hero__guarantee">14 dni gwarancji zwrotu · Faktura VAT</p>
+        <div class="hero__tags">
+            <span class="hero__tag">Kurs Metryk (120+ lekcji)</span>
+            <span class="hero__tag">Asystent AI do Twoich danych</span>
+            <span class="hero__tag">Dashboard gotowy do użycia</span>
+            <span class="hero__tag">Sesje live co tydzień</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section id="problem" class="section section--alt">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Znasz to uczucie?</h2>
+            <p>Biznes pyta o termin.</p>
+        </div>
+        <ul class="pain-list fade-up">
+            <li>
+                <span class="pain-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                <span>Biznes pyta <strong>„kiedy to będzie gotowe?"</strong> W zespole rośnie napięcie, bo velocity nie daje odpowiedzi, której można bronić.</span>
+            </li>
+            <li>
+                <span class="pain-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                <span>Macie dane w Jirze, ale nadal nie zamieniacie ich w konkretne wnioski. Eksport, Excel, ściana liczb i dalej nie wiadomo, co z tego naprawdę wynika.</span>
+            </li>
+            <li>
+                <span class="pain-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                <span>Na retro mówicie „wydaje mi się" zamiast „dane pokazują". Rozmowa kręci się wokół opinii, nie faktów.</span>
+            </li>
+            <li>
+                <span class="pain-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                <span>W Twojej organizacji metryki służą do <strong>porównywania zespołów</strong>, a nie do usprawniania pracy. Zespoły bardziej się bronią, niż uczą.</span>
+            </li>
+            <li>
+                <span class="pain-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                <span>AI jest wszędzie, ale nadal nie macie prostego sposobu, żeby połączyć je z codzienną pracą na metrykach i decyzjach.</span>
+            </li>
+        </ul>
+        <div class="quote-block fade-up" style="margin-top:2rem;">
+            „I tak wszyscy pytają: na kiedy to będzie.” · „Jest dużo warsztatów, ale potem tego nie używamy.” · „Developerzy pytają: po co mam to robić i jaka z tego będzie korzyść?”
+            <div style="margin-top:0.75rem; font-size:0.95rem; font-weight:400; color:var(--text-light);">z wywiadów z Scrum Masterami, Agile Coachami i PM-ami</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CO JUŻ PRÓBOWAŁEŚ ===== -->
+<section class="section">
+    <div class="container container--narrow">
+        <div class="fade-up">
+            <h2 style="margin-bottom:1.5rem;">Co już próbowałeś robić?</h2>
+            <p style="color:var(--text-light); margin-bottom:2rem;">Zanim tu trafiłeś, pewnie próbowałeś kilku rzeczy. I pewnie żadna nie dała Ci tego, czego szukasz.</p>
+            <div style="display:flex; flex-direction:column; gap:1.25rem;">
+                <div style="padding:1.25rem 1.5rem; background:#fef2f2; border-radius:var(--radius); border-left:3px solid #b91c1c;">
+                    <strong>Szkolenie z certyfikatem.</strong> Certyfikat jest. Wisi na ścianie (albo w PDF-ie). Ale w poniedziałek rano nadal nie wiesz, jak metrykowo wspierać zespół.
+                </div>
+                <div style="padding:1.25rem 1.5rem; background:#fef2f2; border-radius:var(--radius); border-left:3px solid #b91c1c;">
+                    <strong>Jira jaka jest, każdy widzi.</strong> Dane w Jirze nie nadają się do aktywnej, codziennej pracy. Ich przygotowanie zajmuje dużo czasu, a użyteczność jest ograniczona.
+                </div>
+                <div style="padding:1.25rem 1.5rem; background:#fef2f2; border-radius:var(--radius); border-left:3px solid #b91c1c;">
+                    <strong>YouTube i blogi.</strong> Rozproszone materiały, sprzeczne porady, zero kontekstu Twojego zespołu. Po 3 godzinach wiesz mniej niż przed.
+                </div>
+                <div style="padding:1.25rem 1.5rem; background:#fef2f2; border-radius:var(--radius); border-left:3px solid #b91c1c;">
+                    <strong>„Wydaje mi się, że..."</strong> Na retro, na statusie, w rozmowie z PO. I wszyscy wiedzą, że to zgadywanie. Tylko nikt tego nie mówi na głos.
+                </div>
+            </div>
+            <p style="margin-top:2rem; font-weight:500; color:var(--text-light); font-style:italic;">Problem nie w Tobie. Problem w tym, że nikt nie pokazał Ci, jak połączyć wykorzystanie AI w jeden działający system.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== BEFORE vs AFTER ===== -->
+<section class="section">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Przed i po SPA</h2>
+        </div>
+        <div class="compare-grid fade-up">
+            <div class="compare-col compare-col--before">
+                <h3>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    Bez SPA
+                </h3>
+                <ul>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Zgadujecie terminy. Stres przed każdą rozmową z PO.
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Excel-hell: godziny nad eksportami, które nikt nie czyta
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Retro oparte na opiniach, nie na faktach
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Biznes nie ufa Waszym prognozom.
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Czujesz, że Twoja rola jest usługowa, nie ekspercka
+                    </li>
+                </ul>
+            </div>
+            <div class="compare-col compare-col--after">
+                <h3>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+                    Z SPA
+                </h3>
+                <ul>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Spokój przed spotkaniem z biznesem. Macie dane.
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        AI analizuje Wasze dane.
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Wreszcie użyteczny dashboard, którego używacie w codziennej pracy.
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Prognozy Monte Carlo, którym możecie ufać.
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Pewność, że mówisz językiem danych, nie opinii
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Całościowy system pracy z AI, który daje Ci konkretne korzyści.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="fade-up" style="text-align:center; margin-top:2.5rem;">
+            <p style="color:var(--text-light); margin:0 auto 0.75rem;">Chcesz to zmienić?</p>
+            <a href="#cennik" class="btn">Zobacz pakiety <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="fade-up" style="text-align:center; margin-top:2rem; font-style:italic; color:var(--text-light); max-width:600px; margin-left:auto; margin-right:auto;">
+            „Dał mi przewidywalność, do której dążyłem." <span style="font-style:normal; font-weight:600;">Wojciech, Project Manager</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<section class="section section--dark">
+    <div class="container">
+        <div class="stats-bar fade-up">
+            <div class="stat">
+                <div class="stat__number">4</div>
+                <div class="stat__label">tygodnie wdrożenia live</div>
+            </div>
+            <div class="stat">
+                <div class="stat__number">1</div>
+                <div class="stat__label">system metrykowy z AI</div>
+            </div>
+            <div class="stat">
+                <div class="stat__number">&infin;</div>
+                <div class="stat__label">dashboardów gotowych do użycia</div>
+            </div>
+            <div class="stat">
+                <div class="stat__number">14</div>
+                <div class="stat__label">dni gwarancji zwrotu</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== DLACZEGO TERAZ ===== -->
+<section id="dlaczego-teraz" class="section">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Dlaczego teraz, a nie za pół roku?</h2>
+            <p>Samo AI nie daje przewidywalności. Potrzebujesz jeszcze metryk, danych i sposobu pracy.</p>
+        </div>
+        <div class="insight-grid fade-up" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="insight-card insight-card--danger">
+                <h3>Masz AI + nie rozumiesz metryk</h3>
+                <p>Dostajesz ładne liczby, których nie umiesz obronić. AI daje odpowiedź, ale skąd wiesz, czy ma sens?</p>
+            </div>
+            <div class="insight-card insight-card--warn">
+                <h3>Czekasz = zostajesz w tyle</h3>
+                <p>Za pół roku AI w Jirze, Confluence, Azure będzie standardem. Ci, którzy już to rozumieją, będą prowadzić rozmowy. Reszta będzie słuchać.</p>
+            </div>
+            <div class="insight-card insight-card--success">
+                <h3>Masz AI + rozumiesz metryki</h3>
+                <p>Wiesz co mierzyć. AI przyspiesza analizę. Rozmawiasz z biznesem faktami. Masz przewagę, której inni nie mają.</p>
+            </div>
+        </div>
+        <div class="quote-block fade-up">
+            Najpierw rozumiesz metryki. Potem AI robi z nimi cuda. W odwrotnej kolejności to nie działa.
+        </div>
+    </div>
+</section>
+
+<!-- ===== ŚCIEŻKA ===== -->
+<section class="section">
+    <div class="container container--narrow">
+        <div class="section__header fade-up">
+            <h2>Od zera do systemu. W 3 krokach.</h2>
+        </div>
+        <div class="fade-up" style="display:flex; flex-direction:column; gap:1.5rem;">
+            <div style="display:flex; gap:1.25rem; align-items:flex-start;">
+                <div style="width:48px; height:48px; border-radius:50%; background:var(--bg-alt); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; flex-shrink:0;">0</div>
+                <div>
+                    <strong>Rozumiesz metryki</strong>
+                    <p style="color:var(--text-light); margin-top:0.25rem;">Kurs Metryk, 120+ lekcji. Cycle Time, Throughput, Monte Carlo. Fundament, bez którego AI nie pomoże.</p>
+                </div>
+            </div>
+            <div style="display:flex; gap:1.25rem; align-items:flex-start;">
+                <div style="width:48px; height:48px; border-radius:50%; background:var(--bg-alt); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; flex-shrink:0;">1</div>
+                <div>
+                    <strong>AI pracuje z Twoimi danymi</strong>
+                    <p style="color:var(--text-light); margin-top:0.25rem;">Asystent AI, dashboard, prompty. Wrzucasz dane z Jiry, dostajesz analizę, prognozy i raporty dla biznesu.</p>
+                </div>
+            </div>
+            <div style="display:flex; gap:1.25rem; align-items:flex-start;">
+                <div style="width:48px; height:48px; border-radius:50%; background:var(--bg-alt); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; flex-shrink:0;">2</div>
+                <div>
+                    <strong>Masz system, który pomaga Ci na co dzień</strong>
+                    <p style="color:var(--text-light); margin-top:0.25rem;">Jira + AI połączone. Alerty, prognozy, raporty. Ty podejmujesz decyzje, AI przygotowuje dane.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SOLUTION OVERVIEW ===== -->
+<section id="rozwiazanie" class="section section--alt">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>SPA = 4 filary, 1 system</h2>
+            <p>Każdy filar działa sam. Razem dają przewidywalność.</p>
+        </div>
+        <div class="solution-pillars fade-up">
+            <div class="pillar">
+                <span class="pillar__icon" aria-hidden="true">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </span>
+                <h3>Kurs Metryk</h3>
+                <p><strong>120+ lekcji wideo</strong>. Fundament: <strong>Cycle Time, Throughput, Monte Carlo, CFD, WIP Age</strong>. We własnym tempie.</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar__icon" aria-hidden="true">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <h3>Asystent AI</h3>
+                <p><strong>Budujesz krok po kroku</strong>. Wyciąga <strong>dane z Jiry</strong>, generuje prognozy, pomaga w rozmowie z biznesem. Twój, dopasowany do zespołu.</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar__icon" aria-hidden="true">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </span>
+                <h3>Dashboardy</h3>
+                <p>Budujesz <strong>swoje dashboardy</strong>, które są używane przez <strong>zespół i biznes</strong>. Gotowe w kilka minut.</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar__icon" aria-hidden="true">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </span>
+                <h3>Jira + Rovo + AI</h3>
+                <p>Łączysz <strong>AI z narzędziami</strong>, które już masz. <strong>Jira, Confluence, Rovo</strong> od Atlassiana. Automatyczne alerty i prognozy.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOR WHOM ===== -->
+<section class="section">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Dla kogo jest SPA?</h2>
+        </div>
+        <div class="for-whom-grid fade-up">
+            <div class="for-whom-col for-whom-col--yes">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                    Dla Ciebie, jeśli:
+                </h3>
+                <ul>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Jesteś Scrum Masterem lub Agile Coachem
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Pracujesz jako Project Manager lub Team Lead
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Odpowiadasz za delivery w zespole lub organizacji
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Pracujesz z Jira, Azure DevOps lub podobnym narzędziem
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        Chcesz rozmawiać z biznesem faktami, nie opiniami
+                    </li>
+                </ul>
+            </div>
+            <div class="for-whom-col for-whom-col--no">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    Nie dla Ciebie, jeśli:
+                </h3>
+                <ul>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Szukasz kolejnego certyfikatu na ścianę, bez wdrożenia
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Masz już 3 certyfikaty i myślisz, że czwarty coś zmieni
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Wolisz dalej sam tworzyć formuły w Excelu i składać to ręcznie
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Oczekujesz magicznego przycisku. Tu budujesz system.
+                    </li>
+                    <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Uważasz, że rewolucja AI ciebie nie dotyczy
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== OBIEKCJE ===== -->
+<section class="section section--alt">
+    <div class="container container--narrow">
+        <div class="section__header fade-up">
+            <h2>Czy to zadziała u mnie?</h2>
+        </div>
+        <div class="fade-up" style="display:flex; flex-direction:column; gap:1.5rem;">
+            <div>
+                <p style="font-weight:700; margin-bottom:0.35rem;">„Nie znam się na AI."</p>
+                <p style="color:var(--text-light);">Fakt: Nie piszesz <strong>kodu</strong>. Konfigurujesz, promptujesz, karmisz danymi. Jeśli umiesz eksportować <strong>CSV z Jiry</strong>, dasz radę. <strong>Zaczynamy od początku. Krok po kroku.</strong></p>
+            </div>
+            <div>
+                <p style="font-weight:700; margin-bottom:0.35rem;">„Mam już certyfikaty i nic się nie zmieniło."</p>
+                <p style="color:var(--text-light);">Fakt: SPA to nie <strong>certyfikat</strong>. Budujesz <strong>system</strong> z Twoimi danymi. Po każdej lekcji masz coś konkretnego do wdrożenia, nie papier na ścianę.</p>
+            </div>
+            <div>
+                <p style="font-weight:700; margin-bottom:0.35rem;">„Mój zespół nie chce zmian."</p>
+                <p style="color:var(--text-light);">Fakt: Nie musisz <strong>przekonywać zespołu</strong>. Zaczynasz sam, z własnymi danymi. Kiedy pokażesz <strong>wyniki</strong>, rozmowa się zmieni.</p>
+            </div>
+            <div>
+                <p style="font-weight:700; margin-bottom:0.35rem;">„Nie mam czasu."</p>
+                <p style="color:var(--text-light);">Fakt: To <strong>inwestycja</strong>, która szybko się zwraca. Mniej ręcznego grzebania w danych, mniej zgadywania, więcej <strong>konkretnych odpowiedzi</strong> i efektywniejsza praca z zespołem i biznesem.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROGRAM (4 SPRINTS) ===== -->
+<section id="program" class="section section--alt">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Program SPA</h2>
+            <p>Co tydzień nowe umiejętności. Z każdą chwilą lepiej działający system.</p>
+        </div>
+        <div class="sprint-timeline fade-up">
+            <div class="sprint">
+                <div class="sprint__badge">S1</div>
+                <div>
+                    <h3>AI-first i budowa fundamentów</h3>
+                    <p><strong>Modele AI</strong> w codziennej pracy i myślenie <strong>AI-first</strong>. Budujesz profil swojej roli (SM/AC/PM) i system informacji o zespole i projekcie. Pierwsza metryka dzięki AI.</p>
+                    <span class="sprint__outcome">Efekt: AI zna Twój kontekst + pierwsza metryka</span>
+                </div>
+            </div>
+            <div class="sprint">
+                <div class="sprint__badge">S2</div>
+                <div>
+                    <h3>Zespół asystentów AI i dane z Jiry</h3>
+                    <p>Budujesz <strong>zespół asystentów AI</strong>, każdy z własnym zadaniem. Praca z <strong>danymi z Jiry</strong> za pomocą plików, pierwsze analizy, metryki i odpowiedź na „na kiedy to będzie". System pracy asystentów z metrykami.</p>
+                    <span class="sprint__outcome">Efekt: zespół asystentów + analizy z Twoich danych</span>
+                </div>
+            </div>
+            <div class="sprint">
+                <div class="sprint__badge">S3</div>
+                <div>
+                    <h3>Metryki, dashboardy i prognozowanie</h3>
+                    <p>System pracy z <strong>metrykami</strong> dzięki AI. <strong>Prognozowanie</strong> i przewidywalność projektów. Budujesz własne dashboardy metrykowe. Jak wdrożyć metryki w zespole i biznesie dzięki wsparciu AI.</p>
+                    <span class="sprint__outcome">Efekt: dashboardy + prognozy + plan wdrożenia</span>
+                </div>
+            </div>
+            <div class="sprint">
+                <div class="sprint__badge">S4</div>
+                <div>
+                    <h3>Integracja Jira z AI</h3>
+                    <p><strong>Integracja Jiry z AI</strong>. Zaawansowana praca z <strong>metrykami i danymi</strong>. Plan działania i wykorzystywania systemu w Twoim kontekście.</p>
+                    <span class="sprint__outcome">Efekt: zintegrowany system + Twój plan działania</span>
+                </div>
+            </div>
+            <div class="sprint">
+                <div class="sprint__badge sprint__badge--bonus">+</div>
+                <div>
+                    <h3>Bonus: Rovo AI (Atlassian)</h3>
+                    <p><strong>Dane z Jiry</strong>, raporty, Agenci, automatyzacje. Rovo jako <strong>wirtualny współpracownik</strong> w codziennej pracy.</p>
+                </div>
+            </div>
+            <div class="sprint">
+                <div class="sprint__badge sprint__badge--bonus">+</div>
+                <div>
+                    <h3>Bonus: Budowanie własnych narzędzi</h3>
+                    <p><strong>Narzędzia</strong> przydatne w pracy SM/AC/PM. Ty mówisz co chcesz, <strong>AI koduje</strong>.</p>
+                </div>
+            </div>
+        </div>
+        <div class="fade-up" style="text-align:center; margin-top:2.5rem;">
+            <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn">Dołącz do przedsprzedaży <span aria-hidden="true">&rarr;</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== AI MODULES ===== -->
+<section id="moduly-ai" class="section">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>AI w SPA: to odróżnia program od zwykłego kursu</h2>
+            <p>Nie uczysz się „o AI". Budujesz asystenta, dashboard i narzędzia, które pracują z Twoimi danymi.</p>
+            <div class="ai-images-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:2rem; max-width:980px; margin-left:auto; margin-right:auto; align-items:start;">
+                <div style="display:grid; gap:1.25rem;">
+                    <img src="img/AI_dashboard.png" alt="Jira Flow Dashboard: metryki z AI" loading="lazy" style="width:100%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow-lg);">
+                    <img src="img/forecast.png" alt="Forecast i prognozy dostarczania" loading="lazy" style="width:100%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow-lg);">
+                </div>
+                <img src="img/SPA_team.png" alt="Schemat asystentów AI w SPA" loading="lazy" style="width:100%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow-lg);">
+            </div>
+        </div>
+        <div class="ai-modules-grid fade-up">
+            <div class="ai-module-card">
+                <h3>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    AI do interpretacji metryk
+                </h3>
+                <p>Wrzucasz dane z Jiry do AI i od razu widzisz, co spowalnia zespół, gdzie rośnie ryzyko i co warto omówić z biznesem. Zamiast zgadywać, pracujesz na konkretach.</p>
+            </div>
+            <div class="ai-module-card">
+                <h3>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    AI pisze raport za Ciebie
+                </h3>
+                <p>Z danych z Jiry tworzysz tygodniowy update dla biznesu w 5 minut. Bez agile'owego żargonu, za to z jasnym statusem, ryzykiem i rekomendacją.</p>
+            </div>
+            <div class="ai-module-card">
+                <h3>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    AI jako tłumacz danych
+                </h3>
+                <p>Wykresy i metryki zamieniasz na prosty język, który rozumie zespół i biznes. Dzięki temu łatwiej wyjaśnisz, co się dzieje i co trzeba zrobić dalej.</p>
+            </div>
+            <div class="ai-module-card">
+                <h3>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Zbuduj swojego Agile Coach AI
+                </h3>
+                <p>Krok po kroku budujesz własnego asystenta AI z wiedzą o metrykach Twojego zespołu. Pytasz go, co się zmieniło, co powinno Cię niepokoić i na co zwrócić uwagę.</p>
+            </div>
+            <div class="ai-module-card">
+                <h3>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    Symulacje „co by było gdyby"
+                </h3>
+                <p>Sprawdzasz scenariusze przed podjęciem decyzji: co się stanie, gdy ograniczycie WIP, zmienicie priorytety albo dojdą nowe tematy. AI pomaga policzyć wpływ i przygotować komunikat do biznesu.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== KURS METRYK - 8 MODULES ===== -->
+<section id="program-kurs" class="section section--alt">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Kurs Metryk: 9 modułów + 6 bonusów, 120+ lekcji</h2>
+            <p>Solidne fundamenty metryk procesowych. Realizujesz we własnym tempie, wracasz do lekcji kiedy chcesz.</p>
+            <div style="margin-top:1.5rem;">
+                <img src="img/KM.webp" alt="Kurs Metryk: wykresy, dashboardy, CFD" loading="lazy" style="max-width:440px; width:100%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow-lg);">
+            </div>
+        </div>
+        <div class="modules-grid fade-up">
+            <div class="module-card">
+                <span class="module-num">M1</span>
+                <div class="module-card__text">
+                    <h3>Plan działania</h3>
+                    <p>Powitanie, strategia nauki, wymagania i podstawowe pojęcia</p>
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-num">M2</span>
+                <div class="module-card__text">
+                    <h3>Wstęp i podstawowe tematy</h3>
+                    <p>Wprowadzenie do metryk, definicje, zbieranie danych, statystyka i błędy poznawcze</p>
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-num">M3</span>
+                <div class="module-card__text">
+                    <h3>Throughput</h3>
+                    <p>Przepustowość systemu, wykresy, czytanie metryk, zastosowanie w Scrumie i prognozowaniu</p>
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-num">M4</span>
+                <div class="module-card__text">
+                    <h3>Cycle Time</h3>
+                    <p>Definicje, wykresy, histogramy, interpretacja danych i praktyczne zastosowanie</p>
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-num">M5</span>
+                <div class="module-card__text">
+                    <h3>Cumulative Flow Diagram</h3>
+                    <p>Flow, system Pull, tworzenie CFD, czytanie diagramów i wzorce</p>
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-num">M6</span>
+                <div class="module-card__text">
+                    <h3>Prawo Little'a</h3>
+                    <p>Wprowadzenie do prawa, działanie mechanizmu i prognozowanie</p>
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-num">M7</span>
+                <div class="module-card__text">
+                    <h3>WIP Age</h3>
+                    <p>Definicja, metryki, wykresy i praktyczne stosowanie na co dzień</p>
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-num">M8</span>
+                <div class="module-card__text">
+                    <h3>Wprowadzanie metryk</h3>
+                    <p>Dobre praktyki, błędy, wdrażanie w organizacjach i zespołach, narzędzia</p>
+                </div>
+            </div>
+            <div class="module-card">
+                <span class="module-num">M9</span>
+                <div class="module-card__text">
+                    <h3>Prognozowanie statystyczne</h3>
+                    <p>Estymacja, prognozowanie z Cycle Time i symulacja Monte Carlo</p>
+                </div>
+            </div>
+            <div class="module-card module-card--bonus">
+                <span class="module-num">+</span>
+                <div class="module-card__text">
+                    <h3>Bonus: Story Points</h3>
+                    <p>Metryki oparte na Story Pointach</p>
+                </div>
+            </div>
+            <div class="module-card module-card--bonus">
+                <span class="module-num">+</span>
+                <div class="module-card__text">
+                    <h3>Bonus: Metryki w Scrum</h3>
+                    <p>Zastosowanie metryk w kontekście Scrum</p>
+                </div>
+            </div>
+            <div class="module-card module-card--bonus">
+                <span class="module-num">+</span>
+                <div class="module-card__text">
+                    <h3>Bonus: Dodatki do Jiry</h3>
+                    <p>Nave, PaceMkr i inne narzędzia do metryk w Jirze</p>
+                </div>
+            </div>
+            <div class="module-card module-card--bonus">
+                <span class="module-num">+</span>
+                <div class="module-card__text">
+                    <h3>Bonus: Webinary rozszerzone</h3>
+                    <p>Dodatkowe nagrania pogłębiające tematy z kursu</p>
+                </div>
+            </div>
+            <div class="module-card module-card--bonus">
+                <span class="module-num">+</span>
+                <div class="module-card__text">
+                    <h3>Bonus: Nagrania live z AI</h3>
+                    <p>Praktyczne sesje łączące metryki z narzędziami AI</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== VALUE STACK ===== -->
+<section class="section">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Co dostajesz w pakiecie SPA?</h2>
+            <p>Wszystko, żeby zbudować Twój system, który działa. Dostęp na 12 miesięcy.</p>
+        </div>
+        <ul class="value-list fade-up">
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>4 sesje live</strong> <span style="color:#059669; font-weight:700; margin-left:0.5rem;">wartość: 1 600 PLN</span>
+                    <div class="value-note">Spotkanie na żywo. Teoria, praktyka, Q&amp;A. Budujesz system razem z grupą.</div>
+                </div>
+            </li>
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>2 sesje bonusowe</strong> <span style="color:#059669; font-weight:700; margin-left:0.5rem;">wartość: 400 PLN</span>
+                    <div class="value-note">Dodatkowe spotkania pogłębiające wybrane tematy i praktyczne zastosowania AI.</div>
+                </div>
+            </li>
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>Asystent AI + integracja z Jira/Rovo</strong> <span style="color:#059669; font-weight:700; margin-left:0.5rem;">wartość: 500 PLN</span>
+                    <div class="value-note">Budujesz asystenta krok po kroku. Interpretacja danych, prognozy, raporty dla biznesu.</div>
+                </div>
+            </li>
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>Nagrania z wszystkich sesji</strong> <span style="color:#059669; font-weight:700; margin-left:0.5rem;">wartość: 400 PLN</span>
+                    <div class="value-note">Nie możesz być na sesji? Nagranie czeka. Wracasz kiedy chcesz.</div>
+                </div>
+            </li>
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>Biblioteka dobrych promptów</strong> <span style="color:#059669; font-weight:700; margin-left:0.5rem;">wartość: 300 PLN</span>
+                    <div class="value-note">Gotowe prompty: interpretacja, analiza, prognozowanie, symulacje. Copy-paste do AI.</div>
+                </div>
+            </li>
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>Dashboardy</strong> <span style="color:#059669; font-weight:700; margin-left:0.5rem;">wartość: 200 PLN</span>
+                    <div class="value-note">Gotowe arkusze do wizualizacji danych zespołu. Konfiguracja w kilkanaście minut.</div>
+                </div>
+            </li>
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>Kurs Metryk (120+ lekcji wideo)</strong> <span style="color:#059669; font-weight:700; margin-left:0.5rem;">wartość: 1 499 PLN</span>
+                    <div class="value-note">Cycle Time, Throughput, CFD, Monte Carlo, WIP Age. Fundament, który realizujesz we własnym tempie.</div>
+                </div>
+            </li>
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>Dostęp do społeczności Agile+AI</strong> <span style="color:#059669; font-weight:700; margin-left:0.5rem;">wartość: 300 PLN</span>
+                    <div class="value-note">Miejsce do wymiany doświadczeń, pytań i wsparcia we wdrażaniu.</div>
+                </div>
+            </li>
+            <li>
+                <span class="check-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <div>
+                    <strong>Certyfikat ukończenia</strong>
+                    <div class="value-note">Potwierdzenie kompetencji w metrykach Agile i pracy z AI.</div>
+                </div>
+            </li>
+        </ul>
+        <div class="fade-up" style="text-align:center; margin-top:2rem; padding:1.5rem; background:var(--bg-alt); border-radius:var(--radius);">
+            <div style="font-size:1.1rem; color:var(--text-light);"><s>Suma wartości: 5 000+ PLN</s></div>
+            <div style="font-size:1.8rem; font-weight:800; margin-top:0.5rem;">SPA: 1 999 PLN netto</div>
+            <div style="margin-top:1.25rem;">
+                <img src="img/SPAcert.png" alt="Przykładowy certyfikat ukończenia programu SPA" loading="lazy" style="max-width:320px; width:100%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow);">
+            </div>
+        </div>
+        <div class="fade-up" style="text-align:center; margin-top:2rem;">
+            <a href="#cennik" class="btn">Wybierz pakiet <span aria-hidden="true">&rarr;</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="opinie" class="section section--alt">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>100+ absolwentów Kursu Metryk. Oto co mówią.</h2>
+            <div style="display:flex; align-items:center; justify-content:center; gap:0.4rem; margin-top:0.75rem; font-size:0.95rem;">
+                <span style="color:#111; letter-spacing:0.1em;">★★★★★</span>
+                <span style="font-weight:700;">4.9/5</span>
+                <span style="color:var(--text-light);">na podstawie opinii absolwentów</span>
+            </div>
+            <div style="margin-top:1.5rem;">
+                <img src="img/users.webp" alt="Absolwenci Kursu Metryk" loading="lazy" style="max-width:480px; width:100%; height:auto; border-radius:var(--radius);">
+            </div>
+        </div>
+        <div class="testimonials-grid fade-up">
+            <div class="testimonial">
+                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O przewidywalności:</div>
+                <p class="testimonial__text">„Kurs pozwolił mi pracować z danymi a nie z 'wydaje mi się'. Po głębszym użytkowaniu dał mi przewidywalność do której dążyłem."</p>
+                <div class="testimonial__author">
+                    <div>
+                        <div class="testimonial__name">Wojciech Wyrzykowski</div>
+                        <div class="testimonial__role">Project Manager</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O rozmowach z zespołem:</div>
+                <p class="testimonial__text">„Kurs otworzył mnie na dyskusje i szczere pojęcie metryk. Fajnie jak w zespole przychodzę z omówieniem po co zbieramy daną metrykę i wtedy jest takie 'Aaaaa'."</p>
+                <div class="testimonial__author">
+                    <div>
+                        <div class="testimonial__name">Kalina Górecka</div>
+                        <div class="testimonial__role">Agile Coach</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O decyzyjności:</div>
+                <p class="testimonial__text">„Wykorzystuję metryki by wspierać decyzyjność w zespole. Teraz wiem jak je robić w excelu, oraz jak je przedstawiać i omawiać."</p>
+                <div class="testimonial__author">
+                    <div>
+                        <div class="testimonial__name">Kesja Paduch</div>
+                        <div class="testimonial__role">Scrum Master</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O praktyczności:</div>
+                <p class="testimonial__text">„Ten kurs usystematyzował i wyklarował wiele obszarów. Bardzo przydatne były przykłady z życia, konkretne, praktyczne zastosowanie metryk."</p>
+                <div class="testimonial__author">
+                    <div>
+                        <div class="testimonial__name">Marek Konderski</div>
+                        <div class="testimonial__role">Agile Coach, RTE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O przystępności:</div>
+                <p class="testimonial__text">„Jestem humanistką a poznawanie nowych narzędzi jest dla mnie trudne. Moje wątpliwości szybko rozpłynęły się w powietrzu. Każde zagadnienie wytłumaczone jest w prosty i zrozumiały sposób."</p>
+                <div class="testimonial__author">
+                    <div>
+                        <div class="testimonial__name">Magda Drobiazgiewicz</div>
+                        <div class="testimonial__role">Agile Coach</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O strukturze kursu:</div>
+                <p class="testimonial__text">„Kurs Metryk zapewnia fajny i przejrzysty podział na lekcje. Po kursie mam świadomość wielu możliwości jakie dają metryki."</p>
+                <div class="testimonial__author">
+                    <div>
+                        <div class="testimonial__name">Agata Tamborska</div>
+                        <div class="testimonial__role">Scrum Master</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="o-mnie" class="section section--alt">
+    <div class="container">
+        <div class="about-grid fade-up">
+            <div class="about__photo" aria-label="Zdjęcie Pawła Lewińskiego"><img src="img/Pawel_Lewinski.png" alt="Paweł Lewiński" width="200" height="200" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="about__text">
+                <h2>Cześć, jestem Paweł.</h2>
+                <p>
+                    Od ponad 10 lat pracuję z zespołami IT jako Scrum Master i Agile Coach. I jednego nauczyłem się boleśnie: bez danych gadasz z biznesem po omacku. Twoje rekomendacje przepadają w polityce firmy, bo nie masz czym ich podeprzeć.
+                </p>
+                <p>
+                    Stworzyłem Kurs Metryk, bo sam przeszedłem tę drogę. Rozproszone materiały, sprzeczne porady, „poszukaj na forach". Zajęło mi miesiące, żeby to ułożyć. Ten kurs powstał, żebyś Ty nie musiał tego powtarzać.
+                </p>
+                <p>
+                    <strong>SPA to następny krok.</strong> Bo AI już jest. Pytanie brzmi: czy będziesz jednym z tych, którzy wiedzą jak go połączyć z codzienną pracą, czy jednym z tych, którzy mówią „fajne, ale nie wiem jak zacząć".
+                </p>
+                <p>
+                    Jestem Akredytowanym Trenerem Kanban University, twórcą kanału na YouTube z warsztatami i wywiadami oraz organizatorem spotkań Behind the Product.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ROI COMPARISON ===== -->
+<section class="section" style="padding-bottom:0;">
+    <div class="container container--narrow">
+        <div class="fade-up" style="text-align:center;">
+            <h2>Ile kosztuje Cię nieprzewidywalność?</h2>
+            <p style="margin:1rem auto 2rem; color:var(--text-light);">Policzmy razem.</p>
+        </div>
+        <div class="fade-up roi-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; text-align:center;">
+            <div style="padding:1.5rem; border-radius:var(--radius); border:1px solid var(--border);">
+                <div style="font-size:1.8rem; font-weight:800;">10 000 PLN</div>
+                <div style="color:var(--text-light); margin-top:0.5rem; font-size:0.95rem;">miesięczny koszt nieefektywnych spotkań o estymację<br><span style="font-size:0.85rem;">(10h &times; 5 osób &times; 200 PLN/h)</span></div>
+            </div>
+            <div style="padding:1.5rem; border-radius:var(--radius); border:1px solid var(--border);">
+                <div style="font-size:1.8rem; font-weight:800;">2 400+ PLN</div>
+                <div style="color:var(--text-light); margin-top:0.5rem; font-size:0.95rem;">jeden dzień konsultingu<br><span style="font-size:0.85rem;">(stawka rynkowa 300 PLN/h)</span></div>
+            </div>
+            <div style="padding:1.5rem; border-radius:var(--radius); border:1px solid #059669; background:#f0fdf4;">
+                <div style="font-size:1.8rem; font-weight:800;">1 999 PLN</div>
+                <div style="color:var(--text-light); margin-top:0.5rem; font-size:0.95rem;">SPA: 4 tygodnie live + Kurs Metryk + AI + system<br><span style="font-size:0.85rem;">(mniej niż 1 dzień konsultingu)</span></div>
+            </div>
+        </div>
+        <div class="fade-up" style="text-align:center; margin-top:2rem; font-style:italic; color:var(--text-light); max-width:600px; margin-left:auto; margin-right:auto;">
+            „Fajnie jak w zespole przychodzę z omówieniem po co zbieramy daną metrykę i wtedy jest takie 'Aaaaa'." <span style="font-style:normal; font-weight:600;">Kalina, Agile Coach</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="cennik" class="section">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Wybierz swój pakiet</h2>
+            <p>Cena przedsprzedażowa. Po zamknięciu okna cena wzrośnie.</p>
+        </div>
+        <div class="pricing-grid fade-up">
+            <!-- KM Standalone -->
+            <div class="price-card">
+                <h3>Kurs Metryk</h3>
+                <p class="price-card__desc">Kurs wideo, bez AI i sesji live. We własnym tempie.</p>
+                <div class="price-card__price">1499<span class="price-card__unit">PLN netto</span></div>
+                <ul class="price-card__features">
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> 120+ lekcji wideo</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dashboardy</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dostęp na 12 miesięcy</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Certyfikat</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Aktualizacje w cenie</li>
+                </ul>
+                <a href="https://kursmetryk.elms.pl/s/kurs-metryk-agilelabs-strona.html" class="btn btn--outline">Wybieram Kurs Metryk</a>
+            </div>
+
+            <!-- SPA (featured) -->
+            <div class="price-card price-card--featured">
+                <span class="price-card__badge">Polecany</span>
+                <h3>SPA</h3>
+                <p class="price-card__desc">Kurs Metryk + asystent AI + dashboardy + Jira/Rovo + 4 tygodnie live.</p>
+                <div class="price-card__old-price">Wartość elementów: ponad 5000 PLN</div>
+                <div class="price-card__price">1999<span class="price-card__unit">PLN netto</span></div>
+                <ul class="price-card__features">
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Wszystko z Kursu Metryk</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> 4 sesje live + 2 bonusowe</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Asystent AI + dashboardy</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Jira + Rovo + AI</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Nagrania z sesji</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Biblioteka dobrych promptów</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dostęp do społeczności Agile+AI</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dostęp na 12 miesięcy</li>
+                </ul>
+                <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn btn--large">Wybieram SPA <span aria-hidden="true">&rarr;</span></a>
+            </div>
+
+            <!-- SPA + Mentoring -->
+            <div class="price-card">
+                <h3>SPA + Mentoring</h3>
+                <p class="price-card__desc">Wszystko z SPA + indywidualne sesje 1:1.</p>
+                <div class="price-card__old-price">Wartość elementów: ponad 7000 PLN</div>
+                <div class="price-card__price">2999<span class="price-card__unit">PLN netto</span></div>
+                <ul class="price-card__features">
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Wszystko z SPA</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> 3 sesje 1:1 z Pawłem</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Priorytetowe wsparcie</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Pomoc z Twoimi danymi</li>
+                </ul>
+                <a href="https://kursmetryk.elms.pl/s/spamentoring.html" class="btn btn--outline">Wybieram SPA + Mentoring</a>
+            </div>
+        </div>
+
+        <p class="urgency-note fade-up">
+            <strong>Cena przedsprzedażowa obowiązuje do 18.03.2026.</strong>
+            Po tym terminie cena wzrośnie.
+        </p>
+
+    </div>
+</section>
+
+<!-- ===== B2B / TEAM SECTION ===== -->
+<section class="section section--alt">
+    <div class="container">
+        <div class="b2b-section fade-up">
+            <h2>Potrzebujesz SPA dla całego zespołu?</h2>
+            <p style="margin: 0.75rem auto 0; color: var(--text-light);">Ułatwiamy zakupy firmowe i szkolenia grupowe.</p>
+            <div class="b2b-grid">
+                <div class="b2b-item">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    <div class="b2b-item__title">Faktura VAT</div>
+                    <div class="b2b-item__desc">Standardowa faktura VAT do każdego zakupu</div>
+                </div>
+                <div class="b2b-item">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                    <div class="b2b-item__title">Faktura pro-forma</div>
+                    <div class="b2b-item__desc">Na potrzeby budżetowe przed płatnością</div>
+                </div>
+                <div class="b2b-item">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <div class="b2b-item__title">Rabaty zespołowe</div>
+                    <div class="b2b-item__desc">Od 3 osób, napisz po indywidualną ofertę</div>
+                </div>
+            </div>
+            <p style="margin: 0 auto; color: var(--text-light); font-size: 1rem;">
+                Napisz na <a href="mailto:pawel@agilelabs.pl" style="font-weight: 600; color: var(--text);">pawel@agilelabs.pl</a>. Przygotujemy ofertę dopasowaną do Twojego zespołu.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== GUARANTEE ===== -->
+<section id="gwarancja" class="section">
+    <div class="container">
+        <div class="guarantee-box fade-up">
+            <span class="guarantee-box__icon" aria-hidden="true">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <h2>14 dni gwarancji satysfakcji</h2>
+            <p>
+                Testujesz bez ryzyka. Jeśli w ciągu 14 dni od startu programu uznasz, że SPA nie jest tym, czego szukasz,
+                oddaję 100% pieniędzy. Jeden mail, zero pytań, zwrot w 3 dni robocze. Proste.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section section--alt">
+    <div class="container">
+        <div class="section__header fade-up">
+            <h2>Najczęściej zadawane pytania</h2>
+        </div>
+        <div class="faq-list fade-up">
+            <div class="faq-item">
+                <button class="faq-q" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">
+                    <span>Czy to nie będzie kolejne szkolenie, po którym nic się nie zmienia?</span>
+                    <span class="faq-q__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1" hidden>
+                    <div class="faq-a__inner">
+                        To jest dokładnie obawa, którą słyszę najczęściej. I dlatego SPA to program z sesjami live, nie kurs do „obejrzenia i zapomnienia".
+                        Budujesz system krok po kroku, z własnymi danymi zespołu, przez 4 tygodnie.
+                        Po każdym sprincie masz coś działającego: asystenta AI, dashboard, integrację z Jirą. Nie notatki z wykładu.
+                        Grupa i praca domowa pilnują, żebyś nie odpuścił po pierwszym tygodniu.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">
+                    <span>Nie znam się na AI. Czy dam radę?</span>
+                    <span class="faq-q__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>
+                    <div class="faq-a__inner">
+                        SPA jest zaprojektowane dla praktyków, nie programistów. Nie piszesz kodu. Konfigurujesz, promptujesz, karmisz danymi.
+                        Jeśli umiesz eksportować CSV z Jiry, masz wystarczające umiejętności techniczne.
+                        Zaczynamy od absolutnych podstaw i idziemy dalej.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">
+                    <span>Ile czasu tygodniowo muszę poświęcić?</span>
+                    <span class="faq-q__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3" hidden>
+                    <div class="faq-a__inner">
+                        Jedna sesja live w tygodniu + ok. 2-3 godziny pracy własnej (praca domowa, konfiguracja narzędzi, lekcje z Kursu Metryk).
+                        Kurs Metryk realizujesz we własnym tempie, więc możesz go rozłożyć w sposób, który Ci pasuje.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">
+                    <span>Czy mogę zapłacić z budżetu firmy?</span>
+                    <span class="faq-q__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-a" id="faq-a-4" role="region" aria-labelledby="faq-q-4" hidden>
+                    <div class="faq-a__inner">
+                        Tak. Wystawiam fakturę VAT. Wiele osób finansuje z budżetu szkoleniowego.
+                        Jeśli potrzebujesz fakturę pro-forma, napisz na pawel@agilelabs.pl.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">
+                    <span>Czy muszę mieć płatne modele AI?</span>
+                    <span class="faq-q__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5" hidden>
+                    <div class="faq-a__inner">
+                        Nie musisz mieć ich na starcie, ale będę rekomendował przejście na płatny plan jednego z modeli, najczęściej Claude lub ChatGPT.
+                        Powód jest prosty: przy pracy z danymi, większym kontekstem i dłuższymi analizami darmowe plany szybko wpadają w limity
+                        i utrudniają normalną pracę. Ostatecznie to Ty decydujesz, z którego narzędzia chcesz korzystać.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">
+                    <span>Korzystam z Azure DevOps, nie z Jiry. Czy SPA jest dla mnie?</span>
+                    <span class="faq-q__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-a" id="faq-a-6" role="region" aria-labelledby="faq-q-6" hidden>
+                    <div class="faq-a__inner">
+                        Tak. Zasady metryk i pracy z AI działają niezależnie od narzędzia.
+                        Główne przykłady używają Jiry, ale pokazuję też podejście z eksportem CSV, które działa z każdym systemem.
+                        Kurs Metryk w ogóle nie jest związany z konkretnym toolem.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" id="faq-q-7" aria-expanded="false" aria-controls="faq-a-7">
+                    <span>Czym SPA różni się od samego Kursu Metryk?</span>
+                    <span class="faq-q__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-a" id="faq-a-7" role="region" aria-labelledby="faq-q-7" hidden>
+                    <div class="faq-a__inner">
+                        Kurs Metryk to fundament: 120+ lekcji wideo o metrykach procesowych, które realizujesz we własnym tempie.
+                        SPA dodaje do tego asystenta AI, dashboardy, integrację z Jira/Rovo, 4 sesje live i 2 bonusowe,
+                        bibliotekę dobrych promptów oraz dostęp do społeczności Agile+AI. Kurs Metryk to wiedza, SPA to wdrożony system.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta">
+    <div class="container">
+        <h2>Gotowy, żeby przestać zgadywać?</h2>
+        <p class="container--narrow" style="padding:0;">
+            4 tygodnie. Twoje dane. Asystent AI, dashboard, system.
+            Na koniec masz odpowiedzi oparte na danych, nie kolejny certyfikat na ścianę.
+        </p>
+        <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn btn--large">Dołącz do przedsprzedaży <span aria-hidden="true">&rarr;</span></a>
+
+        <div class="ps-section">
+            <p>
+                <strong>PS.</strong> Jeden dzień konsultingu w temacie metryk i Agile to 2 400+ PLN na rynku. Za 1 999 PLN dostajesz 4 tygodnie live, kurs z 120+ lekcjami, asystenta AI, dashboard i bank promptów. Plus 14 dni gwarancji, gdyby coś nie grało.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <p>
+            Mobi-net Paweł Lewiński &middot; Wolnościowa 8, 95-200 Pabianice &middot; NIP 731-14-66-336
+        </p>
+        <p class="mt-1">
+            <a href="mailto:pawel@agilelabs.pl">pawel@agilelabs.pl</a> &middot;
+            <a href="https://www.linkedin.com/in/pawellewinski/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &middot;
+            <a href="https://agilelabs.pl/politykazakopow" target="_blank" rel="noopener noreferrer">Regulamin</a> &middot;
+            <a href="https://agilelabs.pl/polityka_prywatnosci" target="_blank" rel="noopener noreferrer">Polityka prywatności</a>
+        </p>
+        <p class="mt-1">&copy; 2026 AgileLabs. Wszystkie prawa zastrzeżone.</p>
+    </div>
+</footer>
+
+<script>
+    function syncCountdownHeight() {
+        var countdownBar = document.querySelector('.countdown-bar');
+        var height = countdownBar ? countdownBar.offsetHeight : 0;
+        document.documentElement.style.setProperty('--countdown-height', height + 'px');
+    }
+
+    // ===== MOBILE MENU =====
+    var mobileMenu = document.getElementById('mobile-menu');
+    var hamburgerButton = document.getElementById('hamburger-btn');
+    var mobileMenuCloseButton = document.getElementById('mobile-menu-close');
+
+    function openMobileMenu() {
+        mobileMenu.classList.add('open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        hamburgerButton.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        mobileMenuCloseButton.focus();
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        hamburgerButton.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        hamburgerButton.focus();
+    }
+    syncCountdownHeight();
+    window.addEventListener('resize', syncCountdownHeight, { passive: true });
+    hamburgerButton.addEventListener('click', function() {
+        openMobileMenu();
+    });
+    mobileMenuCloseButton.addEventListener('click', function() {
+        closeMobileMenu();
+    });
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
+            closeMobileMenu();
+        }
+    });
+
+    // ===== FAQ ACCORDION =====
+    function setFaqState(item, open) {
+        var button = item.querySelector('.faq-q');
+        var answer = item.querySelector('.faq-a');
+
+        item.classList.toggle('open', open);
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+            answer.hidden = false;
+            answer.style.setProperty('--faq-max-height', answer.scrollHeight + 'px');
+        } else {
+            answer.style.setProperty('--faq-max-height', '0px');
+            answer.hidden = true;
+        }
+    }
+
+    document.querySelectorAll('.faq-q').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var item = this.closest('.faq-item');
+            var question = this.querySelector('span:first-child').textContent.trim();
+            var wasOpen = item.classList.contains('open');
+
+            document.querySelectorAll('.faq-item').forEach(function(el) {
+                setFaqState(el, false);
+            });
+
+            if (!wasOpen) {
+                setFaqState(item, true);
+                gtag('event', 'faq_open', {
+                    event_category: 'FAQ',
+                    event_label: question
+                });
+            }
+        });
+    });
+
+
+    // ===== FADE-UP ON SCROLL =====
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(function(el) {
+        observer.observe(el);
+    });
+
+    // ===== GA4 TRACKING =====
+
+    // CTA clicks — wszystkie przyciski
+    document.querySelectorAll('.btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            gtag('event', 'cta_click', {
+                event_category: 'CTA',
+                event_label: this.textContent.trim().replace(/\s+/g, ' '),
+                cta_href: this.getAttribute('href') || ''
+            });
+        });
+    });
+
+    // Scroll depth — 25 / 50 / 75 / 90%
+    var scrollDepthsFired = {};
+    window.addEventListener('scroll', function() {
+        var scrolled = window.scrollY + window.innerHeight;
+        var total = document.documentElement.scrollHeight;
+        var pct = Math.round((scrolled / total) * 100);
+        [25, 50, 75, 90].forEach(function(depth) {
+            if (pct >= depth && !scrollDepthsFired[depth]) {
+                scrollDepthsFired[depth] = true;
+                gtag('event', 'scroll_depth', {
+                    event_category: 'Scroll',
+                    event_label: depth + '%',
+                    value: depth
+                });
+            }
+        });
+    }, { passive: true });
+
+    // Widoczność sekcji — kiedy sekcja wchodzi w pole widzenia
+    var sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var label = entry.target.id || entry.target.className.split(' ')[0];
+                gtag('event', 'section_view', {
+                    event_category: 'Section',
+                    event_label: label
+                });
+                sectionObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('section').forEach(function(section) {
+        sectionObserver.observe(section);
+    });
+
+    // Mobile menu — otworzył menu
+    document.getElementById('hamburger-btn').addEventListener('click', function() {
+        gtag('event', 'mobile_menu_open', { event_category: 'Navigation' });
+    });
+
+    // Linki nawigacyjne i stopka
+    document.querySelectorAll('a[href^="#"], footer a, nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            gtag('event', 'link_click', {
+                event_category: 'Navigation',
+                event_label: this.textContent.trim(),
+                link_href: this.getAttribute('href') || ''
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
