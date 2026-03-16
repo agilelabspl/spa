@@ -127,7 +127,7 @@
             border-radius: var(--radius);
         }
 
-        /* ===== COUNTDOWN ===== */
+        /* ===== COUNTDOWN BAR (sticky) ===== */
         .countdown-bar {
             background: var(--bg-dark);
             color: var(--text-on-dark);
@@ -145,6 +145,52 @@
             font-weight: 800;
         }
         .countdown-bar a { color: #e8c547; }
+        .countdown-bar .cd-mini { font-variant-numeric: tabular-nums; }
+
+        /* ===== COUNTDOWN HERO (duży) ===== */
+        .countdown-hero {
+            display: flex;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin: 1.5rem 0 0.5rem;
+        }
+        .countdown-hero__block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+        }
+        .countdown-hero__number {
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            color: var(--text);
+        }
+        .countdown-hero__label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+        .countdown-hero__sep {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 300;
+            color: var(--border);
+            align-self: flex-start;
+            line-height: 1;
+            padding-top: 0.1em;
+        }
+        .countdown-hero__caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        .countdown-hero--expired .countdown-hero__number { color: var(--text-light); }
+        .countdown-hero--expired .countdown-hero__caption { color: #c0392b; font-weight: 700; font-size: 1.1rem; }
 
         /* ===== NAV ===== */
         .nav {
@@ -1087,7 +1133,7 @@
 
 <!-- ===== INFO BAR ===== -->
 <div class="countdown-bar">
-    Przedsprzedaż otwarta. <strong>Dołącz do 18.03.2026</strong>
+    Zamknięcie zapisów za: <strong class="cd-mini" id="cd-bar">--:--:--:--</strong>
 </div>
 
 <!-- ===== NAV ===== -->
@@ -1132,7 +1178,18 @@
             <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn btn--large">Dołącz do przedsprzedaży <span aria-hidden="true">&rarr;</span></a>
             <a href="#program" class="btn btn--outline btn--large">Zobacz program</a>
         </div>
-        <p class="hero__guarantee">14 dni gwarancji zwrotu · Faktura VAT</p>
+        <div id="countdown-hero">
+            <p class="countdown-hero__caption">Zamknięcie zapisów za:</p>
+            <div class="countdown-hero">
+                <div class="countdown-hero__block"><span class="countdown-hero__number" id="cd-days">--</span><span class="countdown-hero__label">dni</span></div>
+                <span class="countdown-hero__sep">:</span>
+                <div class="countdown-hero__block"><span class="countdown-hero__number" id="cd-hours">--</span><span class="countdown-hero__label">godzin</span></div>
+                <span class="countdown-hero__sep">:</span>
+                <div class="countdown-hero__block"><span class="countdown-hero__number" id="cd-mins">--</span><span class="countdown-hero__label">minut</span></div>
+                <span class="countdown-hero__sep">:</span>
+                <div class="countdown-hero__block"><span class="countdown-hero__number" id="cd-secs">--</span><span class="countdown-hero__label">sekund</span></div>
+            </div>
+        </div>
         <div class="hero__tags">
             <span class="hero__tag">Kurs Metryk (120+ lekcji)</span>
             <span class="hero__tag">Asystent AI do Twoich danych</span>
@@ -1544,8 +1601,8 @@
                 <div class="sprint__badge">S4</div>
                 <div>
                     <h3>Integracja Jira z AI</h3>
-                    <p><strong>Integracja Jiry z AI</strong> — w tym <strong>rozszerzenie do przeglądarki</strong>, które pokazuje dane z Jiry w czasie rzeczywistym. Zaawansowana praca z <strong>metrykami i danymi</strong>. Plan działania i wykorzystywania systemu w Twoim kontekście.</p>
-                    <span class="sprint__outcome">Efekt: zintegrowany system + rozszerzenie do przeglądarki + Twój plan działania</span>
+                    <p><strong>Integracja Jiry z AI</strong>. Zaawansowana praca z <strong>metrykami i danymi</strong>. Plan działania i wykorzystywania systemu w Twoim kontekście.</p>
+                    <span class="sprint__outcome">Efekt: zintegrowany system + Twój plan działania</span>
                 </div>
             </div>
             <div class="sprint">
@@ -1826,9 +1883,6 @@
                 </div>
             </li>
         </ul>
-        <div class="fade-up" style="text-align:center; margin-top:2.5rem;">
-            <img src="img/spa_dyplom.png" alt="Dyplom ukończenia programu SPA — System Przewidywalności Agile" loading="lazy" style="max-width:360px; width:100%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow-lg);">
-        </div>
         <div class="fade-up" style="text-align:center; margin-top:2rem;">
             <a href="#cennik" class="btn">Wybierz pakiet <span aria-hidden="true">&rarr;</span></a>
         </div>
@@ -2242,6 +2296,47 @@
     }
     syncCountdownHeight();
     window.addEventListener('resize', syncCountdownHeight, { passive: true });
+
+    // ===== COUNTDOWN TIMER =====
+    (function() {
+        var deadline = new Date('2026-03-18T22:00:00+01:00').getTime();
+        var cdDays = document.getElementById('cd-days');
+        var cdHours = document.getElementById('cd-hours');
+        var cdMins = document.getElementById('cd-mins');
+        var cdSecs = document.getElementById('cd-secs');
+        var cdBar = document.getElementById('cd-bar');
+        var heroWrap = document.getElementById('countdown-hero');
+
+        function pad(n) { return n < 10 ? '0' + n : n; }
+
+        function tick() {
+            var now = Date.now();
+            var diff = deadline - now;
+            if (diff <= 0) {
+                cdDays.textContent = '0';
+                cdHours.textContent = '00';
+                cdMins.textContent = '00';
+                cdSecs.textContent = '00';
+                cdBar.textContent = 'Zapisy zamknięte';
+                heroWrap.querySelector('.countdown-hero__caption').textContent = 'Zapisy zostały zamknięte';
+                heroWrap.classList.add('countdown-hero--expired');
+                return;
+            }
+            var d = Math.floor(diff / 86400000);
+            var h = Math.floor((diff % 86400000) / 3600000);
+            var m = Math.floor((diff % 3600000) / 60000);
+            var s = Math.floor((diff % 60000) / 1000);
+
+            cdDays.textContent = d;
+            cdHours.textContent = pad(h);
+            cdMins.textContent = pad(m);
+            cdSecs.textContent = pad(s);
+            cdBar.textContent = d + 'd ' + pad(h) + ':' + pad(m) + ':' + pad(s);
+            requestAnimationFrame(function() { setTimeout(tick, 1000); });
+        }
+        tick();
+    })();
+
     hamburgerButton.addEventListener('click', function() {
         openMobileMenu();
     });
