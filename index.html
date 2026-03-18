@@ -98,6 +98,9 @@
             transition: background 0.2s, transform 0.15s;
         }
         .btn:hover { background: var(--cta-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .btn--disabled { background: #9ca3af; pointer-events: none; cursor: default; }
+        .btn--disabled:hover { background: #9ca3af; transform: none; box-shadow: none; }
+        .btn--outline.btn--disabled { background: transparent; border-color: #9ca3af; color: #9ca3af; }
         .btn--dark {
             background: var(--accent);
             color: var(--text-on-dark);
@@ -1146,7 +1149,7 @@
             <li><a href="#opinie">Opinie</a></li>
             <li><a href="#cennik">Cennik</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn nav__cta">Dołącz</a></li>
+            <li><span class="btn nav__cta btn--disabled">Zapisy zamknięte</span></li>
         </ul>
         <button class="hamburger" id="hamburger-btn" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -1162,7 +1165,7 @@
     <a href="#opinie" onclick="closeMobileMenu()">Opinie</a>
     <a href="#cennik" onclick="closeMobileMenu()">Cennik</a>
     <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-    <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn" onclick="closeMobileMenu()">Dołącz do przedsprzedaży</a>
+    <span class="btn btn--disabled" onclick="closeMobileMenu()">Zapisy zamknięte</span>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -1175,7 +1178,7 @@
             Zamiast zgadywać, pokazujesz dane, ryzyka i realny termin dowiezienia.
         </p>
         <div class="hero__cta-group">
-            <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn btn--large">Dołącz do przedsprzedaży <span aria-hidden="true">&rarr;</span></a>
+            <span class="btn btn--large btn--disabled">Zapisy zamknięte</span>
             <a href="#program" class="btn btn--outline btn--large">Zobacz program</a>
         </div>
         <div id="countdown-hero">
@@ -1621,7 +1624,7 @@
             </div>
         </div>
         <div class="fade-up" style="text-align:center; margin-top:2.5rem;">
-            <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn">Dołącz do przedsprzedaży <span aria-hidden="true">&rarr;</span></a>
+            <span class="btn btn--disabled">Zapisy zamknięte</span>
         </div>
     </div>
 </section>
@@ -2039,7 +2042,7 @@
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Certyfikat</li>
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Aktualizacje w cenie</li>
                 </ul>
-                <a href="https://kursmetryk.elms.pl/s/kurs-metryk-agilelabs-strona.html" class="btn btn--outline">Wybieram Kurs Metryk</a>
+                <span class="btn btn--outline btn--disabled">Zapisy zamknięte</span>
             </div>
 
             <!-- SPA (featured) -->
@@ -2059,7 +2062,7 @@
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dostęp do społeczności Agile+AI</li>
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dostęp na 12 miesięcy</li>
                 </ul>
-                <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn btn--large">Wybieram SPA <span aria-hidden="true">&rarr;</span></a>
+                <span class="btn btn--large btn--disabled">Zapisy zamknięte</span>
             </div>
 
             <!-- SPA + Mentoring -->
@@ -2074,7 +2077,7 @@
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Priorytetowe wsparcie</li>
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Pomoc z Twoimi danymi</li>
                 </ul>
-                <a href="https://kursmetryk.elms.pl/s/spamentoring.html" class="btn btn--outline">Wybieram SPA + Mentoring</a>
+                <span class="btn btn--outline btn--disabled">Zapisy zamknięte</span>
             </div>
         </div>
 
@@ -2241,7 +2244,7 @@
             4 tygodnie. Twoje dane. Asystent AI, dashboard, system.
             Na koniec masz odpowiedzi oparte na danych, nie kolejny certyfikat na ścianę.
         </p>
-        <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai.html" class="btn btn--large">Dołącz do przedsprzedaży <span aria-hidden="true">&rarr;</span></a>
+        <span class="btn btn--large btn--disabled">Zapisy zamknięte</span>
 
         <div class="ps-section">
             <p>
