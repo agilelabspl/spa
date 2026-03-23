@@ -130,6 +130,61 @@
             border-radius: var(--radius);
         }
 
+        /* ===== PRICING HIDDEN ===== */
+        #cennik { display: none !important; }
+
+        /* ===== WAITLIST MODAL ===== */
+        .waitlist-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .waitlist-overlay.active { display: flex; }
+        .waitlist-modal {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            max-width: 440px;
+            width: 100%;
+            padding: 2rem;
+            position: relative;
+            animation: modalIn 0.25s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .waitlist-modal__close {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+            padding: 0.25rem;
+        }
+        .waitlist-modal__close:hover { color: var(--text); }
+        .waitlist-modal h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+        .waitlist-modal p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+        .waitlist-modal .ml-form-embedWrapper {
+            background: transparent !important;
+        }
+
         /* ===== COUNTDOWN BAR (sticky) ===== */
         .countdown-bar {
             background: var(--bg-dark);
@@ -1136,7 +1191,7 @@
 
 <!-- ===== INFO BAR ===== -->
 <div class="countdown-bar">
-    Zamknięcie zapisów za: <strong class="cd-mini" id="cd-bar">--:--:--:--</strong>
+    Planujemy 2. edycję SPA <strong style="cursor:pointer;" onclick="openWaitlistModal()">— zapisz się na listę!</strong>
 </div>
 
 <!-- ===== NAV ===== -->
@@ -1147,9 +1202,8 @@
             <li><a href="#problem">Problem</a></li>
             <li><a href="#program">Program</a></li>
             <li><a href="#opinie">Opinie</a></li>
-            <li><a href="#cennik">Cennik</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><span class="btn nav__cta btn--disabled">Zapisy zamknięte</span></li>
+            <li><span class="btn nav__cta" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span></li>
         </ul>
         <button class="hamburger" id="hamburger-btn" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -1163,9 +1217,8 @@
     <a href="#problem" onclick="closeMobileMenu()">Problem</a>
     <a href="#program" onclick="closeMobileMenu()">Program</a>
     <a href="#opinie" onclick="closeMobileMenu()">Opinie</a>
-    <a href="#cennik" onclick="closeMobileMenu()">Cennik</a>
     <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-    <span class="btn btn--disabled" onclick="closeMobileMenu()">Zapisy zamknięte</span>
+    <span class="btn" onclick="closeMobileMenu(); openWaitlistModal();" style="cursor:pointer;">Dołącz do listy SPA 2</span>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -1178,21 +1231,10 @@
             Zamiast zgadywać, pokazujesz dane, ryzyka i realny termin dowiezienia.
         </p>
         <div class="hero__cta-group">
-            <span class="btn btn--large btn--disabled">Zapisy zamknięte</span>
+            <span class="btn btn--large" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
             <a href="#program" class="btn btn--outline btn--large">Zobacz program</a>
         </div>
-        <div id="countdown-hero">
-            <p class="countdown-hero__caption">Zamknięcie zapisów za:</p>
-            <div class="countdown-hero">
-                <div class="countdown-hero__block"><span class="countdown-hero__number" id="cd-days">--</span><span class="countdown-hero__label">dni</span></div>
-                <span class="countdown-hero__sep">:</span>
-                <div class="countdown-hero__block"><span class="countdown-hero__number" id="cd-hours">--</span><span class="countdown-hero__label">godzin</span></div>
-                <span class="countdown-hero__sep">:</span>
-                <div class="countdown-hero__block"><span class="countdown-hero__number" id="cd-mins">--</span><span class="countdown-hero__label">minut</span></div>
-                <span class="countdown-hero__sep">:</span>
-                <div class="countdown-hero__block"><span class="countdown-hero__number" id="cd-secs">--</span><span class="countdown-hero__label">sekund</span></div>
-            </div>
-        </div>
+        <div id="countdown-hero" style="display:none;"></div>
         <div class="hero__tags">
             <span class="hero__tag">Kurs Metryk (120+ lekcji)</span>
             <span class="hero__tag">Asystent AI do Twoich danych</span>
@@ -1343,7 +1385,7 @@
         </div>
         <div class="fade-up" style="text-align:center; margin-top:2.5rem;">
             <p style="color:var(--text-light); margin:0 auto 0.75rem;">Chcesz to zmienić?</p>
-            <a href="#cennik" class="btn">Zobacz pakiety <span aria-hidden="true">&rarr;</span></a>
+            <span class="btn" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2 <span aria-hidden="true">&rarr;</span></span>
         </div>
         <div class="fade-up" style="text-align:center; margin-top:2rem; font-style:italic; color:var(--text-light); max-width:600px; margin-left:auto; margin-right:auto;">
             „Dał mi przewidywalność, do której dążyłem." <span style="font-style:normal; font-weight:600;">Wojciech, Project Manager</span>
@@ -1624,7 +1666,7 @@
             </div>
         </div>
         <div class="fade-up" style="text-align:center; margin-top:2.5rem;">
-            <span class="btn btn--disabled">Zapisy zamknięte</span>
+            <span class="btn" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
         </div>
     </div>
 </section>
@@ -1887,7 +1929,7 @@
             </li>
         </ul>
         <div class="fade-up" style="text-align:center; margin-top:2rem;">
-            <a href="#cennik" class="btn">Wybierz pakiet <span aria-hidden="true">&rarr;</span></a>
+            <span class="btn" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2 <span aria-hidden="true">&rarr;</span></span>
         </div>
     </div>
 </section>
@@ -1995,8 +2037,8 @@
     </div>
 </section>
 
-<!-- ===== ROI COMPARISON ===== -->
-<section class="section" style="padding-bottom:0;">
+<!-- ===== ROI COMPARISON (hidden for SPA 2 waitlist) ===== -->
+<section class="section" style="padding-bottom:0; display:none;">
     <div class="container container--narrow">
         <div class="fade-up" style="text-align:center;">
             <h2>Ile kosztuje Cię nieprzewidywalność?</h2>
@@ -2244,7 +2286,7 @@
             4 tygodnie. Twoje dane. Asystent AI, dashboard, system.
             Na koniec masz odpowiedzi oparte na danych, nie kolejny certyfikat na ścianę.
         </p>
-        <span class="btn btn--large btn--disabled">Zapisy zamknięte</span>
+        <span class="btn btn--large" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
 
         <div class="ps-section">
             <p>
@@ -2300,45 +2342,7 @@
     syncCountdownHeight();
     window.addEventListener('resize', syncCountdownHeight, { passive: true });
 
-    // ===== COUNTDOWN TIMER =====
-    (function() {
-        var deadline = new Date('2026-03-18T22:00:00+01:00').getTime();
-        var cdDays = document.getElementById('cd-days');
-        var cdHours = document.getElementById('cd-hours');
-        var cdMins = document.getElementById('cd-mins');
-        var cdSecs = document.getElementById('cd-secs');
-        var cdBar = document.getElementById('cd-bar');
-        var heroWrap = document.getElementById('countdown-hero');
-
-        function pad(n) { return n < 10 ? '0' + n : n; }
-
-        function tick() {
-            var now = Date.now();
-            var diff = deadline - now;
-            if (diff <= 0) {
-                cdDays.textContent = '0';
-                cdHours.textContent = '00';
-                cdMins.textContent = '00';
-                cdSecs.textContent = '00';
-                cdBar.textContent = 'Zapisy zamknięte';
-                heroWrap.querySelector('.countdown-hero__caption').textContent = 'Zapisy zostały zamknięte';
-                heroWrap.classList.add('countdown-hero--expired');
-                return;
-            }
-            var d = Math.floor(diff / 86400000);
-            var h = Math.floor((diff % 86400000) / 3600000);
-            var m = Math.floor((diff % 3600000) / 60000);
-            var s = Math.floor((diff % 60000) / 1000);
-
-            cdDays.textContent = d;
-            cdHours.textContent = pad(h);
-            cdMins.textContent = pad(m);
-            cdSecs.textContent = pad(s);
-            cdBar.textContent = d + 'd ' + pad(h) + ':' + pad(m) + ':' + pad(s);
-            requestAnimationFrame(function() { setTimeout(tick, 1000); });
-        }
-        tick();
-    })();
+    // ===== COUNTDOWN TIMER (disabled for SPA 2 waitlist mode) =====
 
     hamburgerButton.addEventListener('click', function() {
         openMobileMenu();
@@ -2466,6 +2470,112 @@
                 link_href: this.getAttribute('href') || ''
             });
         });
+    });
+</script>
+
+<!-- ===== WAITLIST MODAL ===== -->
+<div class="waitlist-overlay" id="waitlist-overlay" onclick="if(event.target===this)closeWaitlistModal();">
+    <div class="waitlist-modal">
+        <button class="waitlist-modal__close" onclick="closeWaitlistModal()" aria-label="Zamknij">&times;</button>
+        <h3>Zapisz się na listę SPA 2</h3>
+        <p>Planujemy 2. edycję SPA: System Przewidywalności Agile z AI. Zostaw dane, a dam Ci znać w pierwszej kolejności.</p>
+
+        <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1773928");</style>
+        <style type="text/css">
+        .ml-form-embedSubmitLoad { display: inline-block; width: 20px; height: 20px; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+        .ml-form-embedSubmitLoad:after { content: " "; display: block; width: 11px; height: 11px; margin: 1px; border-radius: 50%; border: 4px solid #fff; border-color: #ffffff #ffffff #ffffff transparent; animation: ml-form-embedSubmitLoad 1.2s linear infinite; }
+        @keyframes ml-form-embedSubmitLoad { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #mlb2-38841485.ml-form-embedContainer { box-sizing: border-box; display: table; margin: 0 auto; position: static; width: 100% !important; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper { background-color: transparent; border-width: 0px; border-color: transparent; border-radius: 4px; border-style: solid; box-sizing: border-box; display: inline-block !important; margin: 0; padding: 0; position: relative; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper.embedForm { max-width: 400px; width: 100%; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody { padding: 0; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent { text-align: left; margin: 0 0 20px 0; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 { color: #000000; font-family: 'Inter', Arial, sans-serif; font-size: 20px; font-weight: 700; margin: 0 0 10px 0; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p { color: #555555; font-family: 'Inter', Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 20px; margin: 0 0 10px 0; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody form { margin: 0; width: 100%; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow { margin: 0 0 16px 0; width: 100%; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow { margin: 0 0 10px 0; width: 100%; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow.ml-last-item { margin: 0; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input { background-color: #ffffff !important; color: #333333 !important; border-color: #e0e0e0; border-radius: 8px !important; border-style: solid !important; border-width: 1px !important; font-family: 'Inter', Arial, sans-serif; font-size: 15px !important; height: auto; line-height: 21px !important; padding: 12px 14px !important; width: 100% !important; box-sizing: border-box !important; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input:focus { border-color: #111111; outline: none; box-shadow: 0 0 0 2px rgba(17,17,17,0.1); }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input::placeholder { color: #999; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit { margin: 0; float: left; width: 100%; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button { background-color: #111111 !important; border: none !important; border-radius: 8px !important; box-shadow: none !important; color: #ffffff !important; cursor: pointer; font-family: 'Inter', Arial, sans-serif !important; font-size: 15px !important; font-weight: 600 !important; line-height: 21px !important; height: auto; padding: 12px 14px !important; width: 100% !important; box-sizing: border-box !important; transition: background 0.2s; }
+        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover { background-color: #333333 !important; }
+        .ml-error input { border-color: red !important; }
+        .ml-error .label-description, .ml-error label:first-child { color: #ff0000 !important; }
+        </style>
+
+        <div id="mlb2-38841485" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-38841485">
+            <div class="ml-form-align-center">
+                <div class="ml-form-embedWrapper embedForm">
+                    <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                        <div class="ml-form-embedContent" style="display:none;">
+                            <h4></h4><p><br></p>
+                        </div>
+                        <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/575409/forms/182713644656625316/subscribe" data-code="" method="post" target="_blank">
+                            <div class="ml-form-formContent">
+                                <div class="ml-form-fieldRow">
+                                    <div class="ml-field-group ml-field-name">
+                                        <input aria-label="name" type="text" class="form-control" data-inputmask="" name="fields[name]" placeholder="Imię" autocomplete="given-name">
+                                    </div>
+                                </div>
+                                <div class="ml-form-fieldRow ml-last-item">
+                                    <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                        <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Email" autocomplete="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="ml-submit" value="1">
+                            <div class="ml-form-embedSubmit">
+                                <button type="submit" class="primary">Zapisuję się na listę oczekujących</button>
+                                <button disabled="disabled" style="display: none;" type="button" class="loading">
+                                    <div class="ml-form-embedSubmitLoad"></div>
+                                    <span class="sr-only">Loading...</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="anticsrf" value="true">
+                        </form>
+                    </div>
+                    <div class="ml-form-successBody row-success" style="display: none">
+                        <div class="ml-form-successContent">
+                            <h4>Super, jesteś na liście!</h4>
+                            <p>Jak tylko ruszą zapisy na <strong>SPA 2: System Przewidywalności Agile z AI</strong>, dam Ci znać w pierwszej kolejności.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ml_webform_success_38841485() {
+        var $ = ml_jQuery || jQuery;
+        $('.ml-subscribe-form-38841485 .row-success').show();
+        $('.ml-subscribe-form-38841485 .row-form').hide();
+    }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
+<script>
+    fetch("https://assets.mailerlite.com/jsonp/575409/forms/182713644656625316/takel");
+</script>
+
+<script>
+    function openWaitlistModal() {
+        document.getElementById('waitlist-overlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        gtag('event', 'waitlist_modal_open', { event_category: 'Waitlist' });
+    }
+    function closeWaitlistModal() {
+        document.getElementById('waitlist-overlay').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('waitlist-overlay').classList.contains('active')) {
+            closeWaitlistModal();
+        }
     });
 </script>
 
