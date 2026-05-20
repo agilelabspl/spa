@@ -130,61 +130,6 @@
             border-radius: var(--radius);
         }
 
-        /* ===== PRICING HIDDEN ===== */
-        #cennik { display: none !important; }
-
-        /* ===== WAITLIST MODAL ===== */
-        .waitlist-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        .waitlist-overlay.active { display: flex; }
-        .waitlist-modal {
-            background: #fff;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            max-width: 440px;
-            width: 100%;
-            padding: 2rem;
-            position: relative;
-            animation: modalIn 0.25s ease;
-        }
-        @keyframes modalIn {
-            from { opacity: 0; transform: translateY(20px) scale(0.97); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .waitlist-modal__close {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-            line-height: 1;
-            padding: 0.25rem;
-        }
-        .waitlist-modal__close:hover { color: var(--text); }
-        .waitlist-modal h3 {
-            font-size: 1.35rem;
-            margin-bottom: 0.5rem;
-        }
-        .waitlist-modal p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 1.25rem;
-        }
-        .waitlist-modal .ml-form-embedWrapper {
-            background: transparent !important;
-        }
-
         /* ===== COUNTDOWN BAR (sticky) ===== */
         .countdown-bar {
             background: var(--bg-dark);
@@ -203,53 +148,6 @@
             font-weight: 800;
         }
         .countdown-bar a { color: #e8c547; }
-        .countdown-bar .cd-mini { font-variant-numeric: tabular-nums; }
-
-        /* ===== COUNTDOWN HERO (duży) ===== */
-        .countdown-hero {
-            display: flex;
-            justify-content: center;
-            gap: clamp(1rem, 3vw, 2rem);
-            margin: 1.5rem 0 0.5rem;
-        }
-        .countdown-hero__block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 70px;
-        }
-        .countdown-hero__number {
-            font-size: clamp(2.2rem, 6vw, 3.5rem);
-            font-weight: 800;
-            line-height: 1;
-            font-variant-numeric: tabular-nums;
-            color: var(--text);
-        }
-        .countdown-hero__label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-light);
-            margin-top: 0.3rem;
-        }
-        .countdown-hero__sep {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 300;
-            color: var(--border);
-            align-self: flex-start;
-            line-height: 1;
-            padding-top: 0.1em;
-        }
-        .countdown-hero__caption {
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-        .countdown-hero--expired .countdown-hero__number { color: var(--text-light); }
-        .countdown-hero--expired .countdown-hero__caption { color: #c0392b; font-weight: 700; font-size: 1.1rem; }
-
         /* ===== NAV ===== */
         .nav {
             position: sticky;
@@ -851,9 +749,11 @@
         /* ===== PRICING ===== */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1.25rem;
             align-items: start;
+            max-width: 960px;
+            margin: 0 auto;
         }
         @media (max-width: 900px) {
             .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
@@ -927,6 +827,54 @@
             margin-right: auto;
         }
         .urgency-note strong { color: var(--text); }
+
+        .company-form {
+            margin: 2rem auto 0;
+            max-width: 760px;
+            display: grid;
+            gap: 1rem;
+            text-align: left;
+        }
+        .company-form__row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        @media (max-width: 700px) {
+            .company-form__row { grid-template-columns: 1fr; }
+        }
+        .company-form label {
+            display: grid;
+            gap: 0.35rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .company-form input,
+        .company-form textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.9rem 1rem;
+            font: inherit;
+            color: var(--text);
+            background: var(--bg);
+        }
+        .company-form textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+        .company-form input:focus,
+        .company-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(17,17,17,0.08);
+        }
+        .company-form__note {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
 
         /* ===== B2B SECTION ===== */
         .b2b-section {
@@ -1096,29 +1044,14 @@
             "@type": "Person",
             "name": "Paweł Lewiński"
         },
-        "offers": [
-            {
-                "@type": "Offer",
-                "name": "Kurs Metryk",
-                "price": "1499",
-                "priceCurrency": "PLN",
-                "availability": "https://schema.org/PreOrder"
-            },
-            {
-                "@type": "Offer",
-                "name": "SPA",
-                "price": "1999",
-                "priceCurrency": "PLN",
-                "availability": "https://schema.org/PreOrder"
-            },
-            {
-                "@type": "Offer",
-                "name": "SPA + Mentoring",
-                "price": "2999",
-                "priceCurrency": "PLN",
-                "availability": "https://schema.org/PreOrder"
-            }
-        ]
+        "offers": {
+            "@type": "Offer",
+            "name": "SPA 2 - czerwcowa edycja",
+            "price": "1999",
+            "priceCurrency": "PLN",
+            "url": "https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html",
+            "availability": "https://schema.org/InStock"
+        }
     }
     </script>
     <script type="application/ld+json">
@@ -1231,7 +1164,7 @@
 
 <!-- ===== INFO BAR ===== -->
 <div class="countdown-bar">
-    Planujemy 2. edycję SPA <strong style="cursor:pointer;" onclick="openWaitlistModal()">— zapisz się na listę!</strong>
+    Zapisy do SPA 2 otwarte do <strong>1 czerwca 20:00</strong>. <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html"><strong>Nie czekaj, dołącz teraz.</strong></a>
 </div>
 
 <!-- ===== NAV ===== -->
@@ -1243,7 +1176,7 @@
             <li><a href="#program">Program</a></li>
             <li><a href="#opinie">Opinie</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><span class="btn nav__cta" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span></li>
+            <li><a class="btn nav__cta" href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html">Dołącz do SPA 2</a></li>
         </ul>
         <button class="hamburger" id="hamburger-btn" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -1258,23 +1191,22 @@
     <a href="#program" onclick="closeMobileMenu()">Program</a>
     <a href="#opinie" onclick="closeMobileMenu()">Opinie</a>
     <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-    <span class="btn" onclick="closeMobileMenu(); openWaitlistModal();" style="cursor:pointer;">Dołącz do listy SPA 2</span>
+    <a class="btn" href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html" onclick="closeMobileMenu()">Dołącz do SPA 2</a>
 </div>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
     <div class="container">
-        <span class="eyebrow eyebrow--badge">4 tygodnie live · metryki + AI</span>
+        <span class="eyebrow eyebrow--badge">Zapisy do 1 czerwca, 20:00 · 4 tygodnie live</span>
         <h1><span class="word-wrap"><span class="word">Biznes</span></span> <span class="word-wrap"><span class="word">pyta</span></span> <span class="word-wrap"><span class="word">„na</span></span> <span class="word-wrap"><span class="word">kiedy?"</span></span><br><span class="word-wrap"><span class="word">Twój</span></span> <span class="word-wrap"><span class="word">zespół</span></span> <span class="word-wrap"><span class="word">zna</span></span>&nbsp;<span class="word-wrap"><span class="word">odpowiedź!</span></span></h1>
         <p class="hero__headline2">SPA: System Przewidywalności Agile z&nbsp;AI.<br>Budujesz system metrykowy z&nbsp;<strong>asystentem AI</strong> w&nbsp;4&nbsp;tygodnie.</p>
         <p class="hero__sub">
             Krok po kroku porządkujesz pracę z AI i metrykami. Od razu używasz tego na danych z Jiry albo Azure DevOps: do analizy, prognoz, raportów i rozmów z biznesem.
         </p>
         <div class="hero__cta-group">
-            <span class="btn btn--large" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
+            <a href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html" class="btn btn--large">Dołącz do SPA 2</a>
             <a href="#program" class="btn btn--outline btn--large">Zobacz program</a>
         </div>
-        <div id="countdown-hero" style="display:none;"></div>
         <div class="hero__tags">
             <span class="hero__tag">Kurs Metryk (120+ lekcji)</span>
             <span class="hero__tag">Asystent AI do Twoich danych</span>
@@ -1461,7 +1393,7 @@
         </div>
         <div class="fade-up" style="text-align:center; margin-top:2.5rem;">
             <p style="color:var(--text-light); margin:0 auto 0.75rem;">Chcesz to zmienić?</p>
-            <span class="btn" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2 <span aria-hidden="true">&rarr;</span></span>
+            <a class="btn" href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html">Dołącz do SPA 2 <span aria-hidden="true">&rarr;</span></a>
         </div>
         <div class="fade-up" style="text-align:center; margin-top:2rem; font-style:italic; color:var(--text-light); max-width:600px; margin-left:auto; margin-right:auto;">
             „Dał mi przewidywalność, do której dążyłem." <span style="font-style:normal; font-weight:600;">Wojciech, Project Manager</span>
@@ -1754,7 +1686,7 @@
             </div>
         </div>
         <div class="fade-up" style="text-align:center; margin-top:2.5rem;">
-            <span class="btn" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
+            <a class="btn" href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html">Dołącz do SPA 2</a>
         </div>
     </div>
 </section>
@@ -2063,7 +1995,7 @@
             </li>
         </ul>
         <div class="fade-up" style="text-align:center; margin-top:2rem;">
-            <span class="btn" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2 <span aria-hidden="true">&rarr;</span></span>
+            <a class="btn" href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html">Dołącz do SPA 2 <span aria-hidden="true">&rarr;</span></a>
         </div>
     </div>
 </section>
@@ -2171,7 +2103,7 @@
     </div>
 </section>
 
-<!-- ===== ROI COMPARISON (hidden for SPA 2 waitlist) ===== -->
+<!-- ===== ROI COMPARISON (hidden) ===== -->
 <section class="section" style="padding-bottom:0; display:none;">
     <div class="container container--narrow">
         <div class="fade-up" style="text-align:center;">
@@ -2203,34 +2135,19 @@
     <div class="container">
         <div class="section__header fade-up">
             <h2>Wybierz swój pakiet</h2>
-            <p>Edycja 2 jest w przygotowaniu. Dołącz do listy, a dostaniesz informację, gdy otworzymy zapisy.</p>
+            <p>Zapisy do czerwcowej edycji są otwarte do 1 czerwca 2026, godz. 20:00.</p>
         </div>
         <div class="pricing-grid fade-up">
-            <!-- KM Standalone -->
-            <div class="price-card">
-                <h3>Kurs Metryk</h3>
-                <p class="price-card__desc">Kurs wideo, bez AI i sesji wdrożeniowych. We własnym tempie.</p>
-                <div class="price-card__price">1499<span class="price-card__unit">PLN netto</span></div>
-                <ul class="price-card__features">
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> 120+ lekcji wideo</li>
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dashboardy</li>
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dostęp na 12 miesięcy</li>
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Certyfikat</li>
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Aktualizacje w cenie</li>
-                </ul>
-                <span class="btn btn--outline" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
-            </div>
-
-            <!-- SPA (featured) -->
             <div class="price-card price-card--featured">
-                <span class="price-card__badge">Polecany</span>
+                <span class="price-card__badge">Czerwcowa edycja</span>
                 <h3>SPA</h3>
-                <p class="price-card__desc">Kurs Metryk + asystent AI + dashboardy + Jira, Azure DevOps i 4 tygodnie praktycznego wdrożenia.</p>
-                <div class="price-card__old-price">Wartość elementów: ponad 5599 PLN</div>
+                <p class="price-card__desc">Po programie masz własny system AI do pracy z metrykami, forecastem, ryzykami i rozmowami o terminach.</p>
+                <div class="price-card__old-price">2999 PLN netto</div>
                 <div class="price-card__price">1999<span class="price-card__unit">PLN netto</span></div>
                 <ul class="price-card__features">
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Wszystko z Kursu Metryk</li>
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> 4 sesje praktycznego wdrożenia + 2 bonusowe</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> 4 sesje praktycznego wdrożenia systemu AI</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> 2 spotkania bonusowe</li>
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Asystent AI + dashboardy</li>
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Jira / Azure DevOps + AI</li>
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Nagrania z sesji</li>
@@ -2238,39 +2155,35 @@
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dostęp do społeczności Agile+AI</li>
                     <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Dostęp na 12 miesięcy</li>
                 </ul>
-                <span class="btn btn--large" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
+                <a class="btn btn--large" href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html">Dołącz do SPA 2</a>
             </div>
 
-            <!-- SPA + Mentoring -->
             <div class="price-card">
-                <h3>SPA + Mentoring</h3>
-                <p class="price-card__desc">Wszystko z SPA + indywidualne sesje 1:1.</p>
-                <div class="price-card__old-price">Wartość elementów: ponad 7599 PLN</div>
-                <div class="price-card__price">2999<span class="price-card__unit">PLN netto</span></div>
+                <h3>SPA dla zespołu lub firmy</h3>
+                <p class="price-card__desc">Chcesz, żeby w SPA wzięło udział więcej osób z Twojej firmy? Napisz i podeślę ofertę dla firm.</p>
+                <div class="price-card__price">Oferta<span class="price-card__unit">dla firm</span></div>
                 <ul class="price-card__features">
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Wszystko z SPA</li>
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> 3 sesje 1:1 z Pawłem</li>
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Priorytetowe wsparcie</li>
-                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Pomoc z Twoimi danymi</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Zniżki zespołowe zależne od liczby uczestników</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Faktura VAT i przelew tradycyjny na podstawie proformy</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Możliwość wydłużenia terminu płatności do 30 dni</li>
+                    <li><span class="feat-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span> Gwarancja satysfakcji albo zwrot pieniędzy</li>
                 </ul>
-                <span class="btn btn--outline" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
+                <a class="btn btn--outline" href="#kontakt-firma">Zapytaj o ofertę dla grupy</a>
             </div>
         </div>
 
         <p class="urgency-note fade-up">
-            <strong>Edycja 2 nie jest jeszcze otwarta.</strong>
-            Lista zainteresowanych dostanie informację jako pierwsza.
+            <strong>Zapisy zamykam 1 czerwca 2026 o 20:00.</strong>
+            Główny wariant SPA kosztuje 1999 PLN netto i obejmuje 4 spotkania live, 2 bonusy, nagrania oraz materiały.
         </p>
 
     </div>
 </section>
 
 <!-- ===== B2B / TEAM SECTION ===== -->
-<section class="section section--alt">
+<section id="kontakt-firma" class="section section--alt">
     <div class="container">
         <div class="b2b-section fade-up">
-            <h2>Potrzebujesz SPA dla całego zespołu?</h2>
-            <p style="margin: 0.75rem auto 0; color: var(--text-light);">Ułatwiamy zakupy firmowe i szkolenia grupowe.</p>
             <div class="b2b-grid">
                 <div class="b2b-item">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -2288,9 +2201,34 @@
                     <div class="b2b-item__desc">Potrzebujesz przeszkolić cały zespół? Napisz do mnie, dogadamy warunki.</div>
                 </div>
             </div>
-            <p style="margin: 0 auto; color: var(--text-light); font-size: 1rem;">
-                Napisz na <a href="mailto:pawel@agilelabs.pl" style="font-weight: 600; color: var(--text);">pawel@agilelabs.pl</a>. Przygotujemy ofertę dopasowaną do Twojego zespołu.
-            </p>
+            <form class="company-form" action="mailto:pawel@agilelabs.pl?subject=SPA%20dla%20zespolu%20lub%20firmy" method="post" enctype="text/plain">
+                <div class="company-form__row">
+                    <label>
+                        Imię i nazwisko
+                        <input type="text" name="Imie i nazwisko" autocomplete="name" required>
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" name="Email" autocomplete="email" required>
+                    </label>
+                </div>
+                <div class="company-form__row">
+                    <label>
+                        Firma
+                        <input type="text" name="Firma" autocomplete="organization">
+                    </label>
+                    <label>
+                        Liczba osób
+                        <input type="text" name="Liczba osob" placeholder="np. 6-10 osób">
+                    </label>
+                </div>
+                <label>
+                    Czego potrzebujecie?
+                    <textarea name="Potrzeba" placeholder="Np. szkolenie z AI dla zespołu, przewidywalność delivery, Jira/Azure DevOps, warsztat dla PMO..." required></textarea>
+                </label>
+                <p class="company-form__note">Formularz przygotuje wiadomość mailową do mnie. Możesz też napisać bezpośrednio na <a href="mailto:pawel@agilelabs.pl" style="font-weight: 700;">pawel@agilelabs.pl</a>.</p>
+                <button class="btn" type="submit">Wyślij zapytanie o szkolenie</button>
+            </form>
         </div>
     </div>
 </section>
@@ -2483,7 +2421,8 @@
             4 tygodnie praktycznego wdrożenia. Twoje dane z Jiry albo Azure DevOps. Asystent AI, dashboard, prompty, checklisty i sprawdzony system pracy.
             Na koniec masz praktyczne umiejętności, większe osobiste kompetencje AI i odpowiedzi oparte na danych, nie kolejny certyfikat na ścianę.
         </p>
-        <span class="btn btn--large" onclick="openWaitlistModal()" style="cursor:pointer;">Dołącz do listy SPA 2</span>
+        <p class="final-cta__seats">Zapisy do czerwcowej edycji kończą się 1 czerwca o 20:00.</p>
+        <a class="btn btn--large" href="https://kursmetryk.elms.pl/s/system-przewidywalnosci-agile-z-ai14.html">Dołącz do SPA 2</a>
 
         <div class="ps-section">
             <p>
@@ -2538,8 +2477,6 @@
     }
     syncCountdownHeight();
     window.addEventListener('resize', syncCountdownHeight, { passive: true });
-
-    // ===== COUNTDOWN TIMER (disabled for SPA 2 waitlist mode) =====
 
     hamburgerButton.addEventListener('click', function() {
         openMobileMenu();
@@ -2670,111 +2607,6 @@
     });
 </script>
 
-<!-- ===== WAITLIST MODAL ===== -->
-<div class="waitlist-overlay" id="waitlist-overlay" onclick="if(event.target===this)closeWaitlistModal();">
-    <div class="waitlist-modal">
-        <button class="waitlist-modal__close" onclick="closeWaitlistModal()" aria-label="Zamknij">&times;</button>
-        <h3>Zapisz się na listę SPA 2</h3>
-        <p>Planujemy 2. edycję SPA: System Przewidywalności Agile z AI. Zostaw dane, a dam Ci znać w pierwszej kolejności.</p>
-
-        <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1773928");</style>
-        <style type="text/css">
-        .ml-form-embedSubmitLoad { display: inline-block; width: 20px; height: 20px; }
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-        .ml-form-embedSubmitLoad:after { content: " "; display: block; width: 11px; height: 11px; margin: 1px; border-radius: 50%; border: 4px solid #fff; border-color: #ffffff #ffffff #ffffff transparent; animation: ml-form-embedSubmitLoad 1.2s linear infinite; }
-        @keyframes ml-form-embedSubmitLoad { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #mlb2-38841485.ml-form-embedContainer { box-sizing: border-box; display: table; margin: 0 auto; position: static; width: 100% !important; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper { background-color: transparent; border-width: 0px; border-color: transparent; border-radius: 4px; border-style: solid; box-sizing: border-box; display: inline-block !important; margin: 0; padding: 0; position: relative; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper.embedForm { max-width: 400px; width: 100%; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody { padding: 0; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent { text-align: left; margin: 0 0 20px 0; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 { color: #000000; font-family: 'Inter', Arial, sans-serif; font-size: 20px; font-weight: 700; margin: 0 0 10px 0; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p { color: #555555; font-family: 'Inter', Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 20px; margin: 0 0 10px 0; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody form { margin: 0; width: 100%; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent, #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow { margin: 0 0 16px 0; width: 100%; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow { margin: 0 0 10px 0; width: 100%; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow.ml-last-item { margin: 0; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input { background-color: #ffffff !important; color: #333333 !important; border-color: #e0e0e0; border-radius: 8px !important; border-style: solid !important; border-width: 1px !important; font-family: 'Inter', Arial, sans-serif; font-size: 15px !important; height: auto; line-height: 21px !important; padding: 12px 14px !important; width: 100% !important; box-sizing: border-box !important; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input:focus { border-color: #111111; outline: none; box-shadow: 0 0 0 2px rgba(17,17,17,0.1); }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input::placeholder { color: #999; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit { margin: 0; float: left; width: 100%; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button { background-color: #111111 !important; border: none !important; border-radius: 8px !important; box-shadow: none !important; color: #ffffff !important; cursor: pointer; font-family: 'Inter', Arial, sans-serif !important; font-size: 15px !important; font-weight: 600 !important; line-height: 21px !important; height: auto; padding: 12px 14px !important; width: 100% !important; box-sizing: border-box !important; transition: background 0.2s; }
-        #mlb2-38841485.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover { background-color: #333333 !important; }
-        .ml-error input { border-color: red !important; }
-        .ml-error .label-description, .ml-error label:first-child { color: #ff0000 !important; }
-        </style>
-
-        <div id="mlb2-38841485" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-38841485">
-            <div class="ml-form-align-center">
-                <div class="ml-form-embedWrapper embedForm">
-                    <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-                        <div class="ml-form-embedContent" style="display:none;">
-                            <h4></h4><p><br></p>
-                        </div>
-                        <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/575409/forms/182713644656625316/subscribe" data-code="" method="post" target="_blank">
-                            <div class="ml-form-formContent">
-                                <div class="ml-form-fieldRow">
-                                    <div class="ml-field-group ml-field-name">
-                                        <input aria-label="name" type="text" class="form-control" data-inputmask="" name="fields[name]" placeholder="Imię" autocomplete="given-name">
-                                    </div>
-                                </div>
-                                <div class="ml-form-fieldRow ml-last-item">
-                                    <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                                        <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Email" autocomplete="email">
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="hidden" name="ml-submit" value="1">
-                            <div class="ml-form-embedSubmit">
-                                <button type="submit" class="primary">Zapisuję się na listę oczekujących</button>
-                                <button disabled="disabled" style="display: none;" type="button" class="loading">
-                                    <div class="ml-form-embedSubmitLoad"></div>
-                                    <span class="sr-only">Loading...</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="anticsrf" value="true">
-                        </form>
-                    </div>
-                    <div class="ml-form-successBody row-success" style="display: none">
-                        <div class="ml-form-successContent">
-                            <h4>Super, jesteś na liście!</h4>
-                            <p>Jak tylko ruszą zapisy na <strong>SPA 2: System Przewidywalności Agile z AI</strong>, dam Ci znać w pierwszej kolejności.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function ml_webform_success_38841485() {
-        var $ = ml_jQuery || jQuery;
-        $('.ml-subscribe-form-38841485 .row-success').show();
-        $('.ml-subscribe-form-38841485 .row-form').hide();
-    }
-</script>
-<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
-<script>
-    fetch("https://assets.mailerlite.com/jsonp/575409/forms/182713644656625316/takel");
-</script>
-
-<script>
-    function openWaitlistModal() {
-        document.getElementById('waitlist-overlay').classList.add('active');
-        document.body.style.overflow = 'hidden';
-        gtag('event', 'waitlist_modal_open', { event_category: 'Waitlist' });
-    }
-    function closeWaitlistModal() {
-        document.getElementById('waitlist-overlay').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && document.getElementById('waitlist-overlay').classList.contains('active')) {
-            closeWaitlistModal();
-        }
-    });
-</script>
 
 </body>
 </html>
