@@ -339,6 +339,7 @@
 
         /* ===== SECTIONS ===== */
         .section { padding: var(--section-py) 0; }
+        .section[id] { scroll-margin-top: calc(var(--countdown-height) + 80px); }
         .section--alt { background: var(--bg-alt); }
         .section--dark { background: var(--bg-dark); color: var(--text-on-dark); }
         .section--dark .text-light { color: #aaa; }
@@ -687,31 +688,67 @@
         .testimonial {
             padding: 2rem;
             border-radius: var(--radius);
-            border: 1px solid var(--border);
-            background: var(--bg);
+            border: 1px solid #86efac;
+            background: #f0fdf4;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .testimonial__text {
             font-size: 1.05rem;
             color: var(--text-light);
             margin-bottom: 1.25rem;
             line-height: 1.65;
+            font-style: italic;
         }
         .testimonial__author { display: flex; align-items: center; gap: 0.75rem; }
-        .testimonial__avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--bg-alt);
-            border: 2px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--text-light);
-        }
         .testimonial__name { font-weight: 600; font-size: 1rem; }
         .testimonial__role { font-size: 1rem; color: var(--text-light); }
+        .metrics-proof {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(160px, 220px);
+            gap: 1.25rem;
+            align-items: center;
+            margin-top: 1.75rem;
+            padding: 1.25rem 1.5rem;
+            background: rgba(255,255,255,0.72);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+        .metrics-proof h3 { margin-bottom: 0.5rem; font-size: 1.05rem; }
+        .metrics-proof p { color: var(--text-light); font-size: 0.98rem; line-height: 1.55; }
+        .metrics-proof__stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.9rem;
+        }
+        .metrics-proof__stat {
+            padding: 0.5rem 0.7rem;
+            border-radius: var(--radius);
+            background: var(--bg-alt);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .metrics-proof__stat span {
+            display: block;
+            color: var(--text-light);
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+        .metrics-proof img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            justify-self: center;
+            border-radius: var(--radius);
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            .metrics-proof { grid-template-columns: 1fr; }
+            .metrics-proof img { justify-self: center; }
+        }
 
         /* ===== ABOUT ===== */
         .about-grid {
@@ -2006,77 +2043,47 @@
 <section id="opinie" class="section section--alt">
     <div class="container">
         <div class="section__header fade-up">
-            <h2>100+ absolwentów Kursu Metryk. Oto co mówią.</h2>
-            <div style="display:flex; align-items:center; justify-content:center; gap:0.4rem; margin-top:0.75rem; font-size:0.95rem;">
-                <span style="color:#111; letter-spacing:0.1em;">★★★★★</span>
-                <span style="font-weight:700;">4.9/5</span>
-                <span style="color:var(--text-light);">na podstawie opinii absolwentów</span>
-            </div>
-            <div style="margin-top:1.5rem;">
-                <img src="img/users.webp" alt="Absolwenci Kursu Metryk" loading="lazy" style="max-width:480px; width:100%; height:auto; border-radius:var(--radius);">
-            </div>
+            <h2>Co mówią uczestnicy SPA</h2>
         </div>
         <div class="testimonials-grid fade-up">
             <div class="testimonial">
-                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O przewidywalności:</div>
-                <p class="testimonial__text">„Kurs pozwolił mi pracować z danymi a nie z 'wydaje mi się'. Po głębszym użytkowaniu dał mi przewidywalność do której dążyłem."</p>
+                <p class="testimonial__text">„Gorąco polecam SPA. Największą wartością było dla mnie przestawienie myślenia na tryb AI first. Nauczyłam się, jak w prosty sposób wykorzystywać AI do wyliczania i śledzenia metryk zespołowych oraz jak używać go jako codziennego asystenta w pracy z zespołami. Zero lania wody, sama praktyka osadzona w świecie Agile."</p>
                 <div class="testimonial__author">
                     <div>
-                        <div class="testimonial__name">Wojciech Wyrzykowski</div>
-                        <div class="testimonial__role">Project Manager</div>
+                        <div class="testimonial__name">Katarzyna Włodarczyk</div>
+                        <div class="testimonial__role">Senior Scrum Master</div>
                     </div>
                 </div>
             </div>
             <div class="testimonial">
-                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O rozmowach z zespołem:</div>
-                <p class="testimonial__text">„Kurs otworzył mnie na dyskusje i szczere pojęcie metryk. Fajnie jak w zespole przychodzę z omówieniem po co zbieramy daną metrykę i wtedy jest takie 'Aaaaa'."</p>
+                <p class="testimonial__text">„SPA dało mi konkretne i praktyczne narzędzia do codziennej pracy Scrum Mastera. Największą wartością było podejście do metryk oraz możliwość automatyzacji raportów, co realnie oszczędza czas i ułatwia monitorowanie pracy zespołu. Program pokazuje, jak stworzyć własny system pracy i podejmować decyzje w oparciu o dane, a nie tylko intuicję."</p>
                 <div class="testimonial__author">
                     <div>
-                        <div class="testimonial__name">Kalina Górecka</div>
-                        <div class="testimonial__role">Agile Coach</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial">
-                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O decyzyjności:</div>
-                <p class="testimonial__text">„Wykorzystuję metryki by wspierać decyzyjność w zespole. Teraz wiem jak je robić w excelu, oraz jak je przedstawiać i omawiać."</p>
-                <div class="testimonial__author">
-                    <div>
-                        <div class="testimonial__name">Kesja Paduch</div>
+                        <div class="testimonial__name">Anna Balytska</div>
                         <div class="testimonial__role">Scrum Master</div>
                     </div>
                 </div>
             </div>
             <div class="testimonial">
-                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O praktyczności:</div>
-                <p class="testimonial__text">„Ten kurs usystematyzował i wyklarował wiele obszarów. Bardzo przydatne były przykłady z życia, konkretne, praktyczne zastosowanie metryk."</p>
+                <p class="testimonial__text">„SPA dobrze pokazuje, że AI jest tylko narzędziem. Największa wartość pojawia się wtedy, gdy połączymy je z dobrymi danymi i metrykami, które pokazują realny postęp pracy. Podobało mi się praktyczne podejście: nie chodzi o jedno konkretne narzędzie, tylko o sposób pracy, który można zastosować w zespole."</p>
                 <div class="testimonial__author">
                     <div>
-                        <div class="testimonial__name">Marek Konderski</div>
-                        <div class="testimonial__role">Agile Coach, RTE</div>
+                        <div class="testimonial__name">Michał Gajewski</div>
+                        <div class="testimonial__role">Software Development Manager</div>
                     </div>
                 </div>
             </div>
-            <div class="testimonial">
-                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O przystępności:</div>
-                <p class="testimonial__text">„Jestem humanistką a poznawanie nowych narzędzi jest dla mnie trudne. Moje wątpliwości szybko rozpłynęły się w powietrzu. Każde zagadnienie wytłumaczone jest w prosty i zrozumiały sposób."</p>
-                <div class="testimonial__author">
-                    <div>
-                        <div class="testimonial__name">Magda Drobiazgiewicz</div>
-                        <div class="testimonial__role">Agile Coach</div>
-                    </div>
+        </div>
+        <div class="metrics-proof fade-up">
+            <div>
+                <h3>Sprawdzony fundament: Kurs Metryk</h3>
+                <p>SPA zawiera Kurs Metryk, z którego korzystało już 100+ osób. To fundament programu: metryki, flow, przewidywalność i praca z danymi. SPA dodaje do tego AI, dashboardy i praktyczne wdrożenie.</p>
+                <div class="metrics-proof__stats">
+                    <div class="metrics-proof__stat">100+ <span>absolwentów Kursu Metryk</span></div>
+                    <div class="metrics-proof__stat">4.9/5 <span>na podstawie opinii absolwentów</span></div>
                 </div>
             </div>
-            <div class="testimonial">
-                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-light); margin-bottom:0.75rem;">O strukturze kursu:</div>
-                <p class="testimonial__text">„Kurs Metryk zapewnia fajny i przejrzysty podział na lekcje. Po kursie mam świadomość wielu możliwości jakie dają metryki."</p>
-                <div class="testimonial__author">
-                    <div>
-                        <div class="testimonial__name">Agata Tamborska</div>
-                        <div class="testimonial__role">Scrum Master</div>
-                    </div>
-                </div>
-            </div>
+            <img src="img/users.webp" alt="Absolwenci Kursu Metryk" loading="lazy">
         </div>
     </div>
 </section>
